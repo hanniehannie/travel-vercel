@@ -2,11 +2,11 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>이가네 유럽여행 (Feat.엄마 환갑 축하해)</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', sans-serif; background: #faf8f0; }
+body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', sans-serif; background: #faf8f0; font-size: 16px; -webkit-text-size-adjust: 100%; padding-bottom: env(safe-area-inset-bottom); }
 .header { background: #e8c84a; padding: 20px 20px 16px; }
 .header-home { padding-bottom: 20px; }
 .header-top { display: flex; align-items: center; gap: 14px; }
@@ -18,12 +18,12 @@ body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', san
 /* ── 홈 화면 ── */
 .home-screen { padding: 20px 16px; }
 .home-grid { display: flex; flex-direction: column; gap: 12px; }
-.home-btn { display: flex; align-items: center; gap: 16px; background: #fff; border: 2px solid #e0d080; border-radius: 16px; padding: 20px 20px; cursor: pointer; transition: all 0.15s; text-align: left; width: 100%; font-family: inherit; }
+.home-btn { display: flex; align-items: center; gap: 16px; background: #fff; border: 2px solid #e0d080; border-radius: 16px; padding: 22px 20px; cursor: pointer; transition: all 0.15s; text-align: left; width: 100%; font-family: inherit; }
 .home-btn:active { background: #fdf5cc; border-color: #c8a830; transform: scale(0.98); }
 .home-btn-icon { font-size: 32px; flex-shrink: 0; width: 48px; text-align: center; }
 .home-btn-text { flex: 1; }
-.home-btn-title { font-size: 20px; font-weight: 700; color: #2a2000; line-height: 1.2; }
-.home-btn-desc { font-size: 14px; color: #999; margin-top: 4px; }
+.home-btn-title { font-size: 22px; font-weight: 700; color: #2a2000; line-height: 1.2; }
+.home-btn-desc { font-size: 15px; color: #888; margin-top: 5px; }
 .home-btn-arrow { font-size: 20px; color: #c8a830; flex-shrink: 0; }
 .home-btn.btn-schedule { border-left: 5px solid #e8c84a; }
 .home-btn.btn-cost     { border-left: 5px solid #5aaa70; }
@@ -32,10 +32,10 @@ body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', san
 .home-btn.btn-ai       { border-left: 5px solid #2a2000; }
 
 /* ── 서브페이지 공통 ── */
-.subpage-header { background: #e8c84a; padding: 14px 16px; display: flex; align-items: center; gap: 12px; position: sticky; top: 0; z-index: 100; }
-.back-btn { background: #2a2000; color: #e8c84a; border: none; border-radius: 10px; padding: 8px 14px; font-size: 16px; font-weight: 700; cursor: pointer; font-family: inherit; flex-shrink: 0; }
+.subpage-header { background: #e8c84a; padding: 14px 16px; display: flex; align-items: center; gap: 12px; position: sticky; top: 0; z-index: 100; padding-top: max(14px, env(safe-area-inset-top)); }
+.back-btn { background: #2a2000; color: #e8c84a; border: none; border-radius: 10px; padding: 10px 18px; font-size: 17px; font-weight: 700; cursor: pointer; font-family: inherit; flex-shrink: 0; }
 .subpage-title { font-size: 18px; font-weight: 700; color: #2a2000; }
-.content { padding: 16px; }
+.content { padding: 14px; }
 
 /* 지도 */
 .map-selector { background: #fff; border: 1.5px solid #e0d080; border-radius: 12px; padding: 14px; margin-bottom: 16px; }
@@ -52,8 +52,8 @@ body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', san
 .day-card { background: #fff; border: 1.5px solid #e0d080; border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
 .day-header { background: #f0d84e; padding: 12px 14px; display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; }
 .day-num { background: #2a2000; color: #f0d84e; font-weight: 700; font-size: 12px; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.day-date { font-weight: 700; font-size: 16px; color: #2a2000; }
-.day-loc { font-size: 13px; color: #5a4a00; margin-top: 2px; }
+.day-date { font-weight: 700; font-size: 17px; color: #2a2000; }
+.day-loc { font-size: 14px; color: #5a4a00; margin-top: 3px; }
 .day-toggle { margin-left: auto; font-size: 14px; color: #5a4a00; transition: transform 0.2s; }
 .day-toggle.open { transform: rotate(180deg); }
 .day-body { padding: 14px 14px 6px; display: none; }
@@ -72,7 +72,7 @@ body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', san
 .schedule-text ul { list-style: none; padding: 0; margin: 3px 0 0 0; }
 .schedule-text ul li { padding: 3px 0 3px 16px; position: relative; font-size: 14px; color: #555; line-height: 1.5; }
 .schedule-text ul li::before { content: '·'; position: absolute; left: 3px; color: #c8a830; font-weight: 700; }
-.schedule-label { font-size: 13px; color: #333; font-weight: 500; }
+.schedule-label { font-size: 16px; color: #333; font-weight: 500; }
 .schedule-label.meal-label { color: #d05010; font-weight: 700; }
 .note-badge { display: inline-block; background: #f0f0f0; color: #777; font-size: 11px; padding: 2px 8px; border-radius: 6px; margin-top: 4px; }
 .warn-badge { display: inline-block; background: #fff0e0; color: #c05000; font-size: 11px; padding: 2px 8px; border-radius: 6px; margin-top: 4px; border: 1px solid #f0c080; }
@@ -123,12 +123,12 @@ body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', san
 .tab-ai.active { background: #faf8f0 !important; color: #2a2000 !important; }
 .agent-wrap { display: flex; flex-direction: column; height: calc(100vh - 180px); min-height: 500px; }
 .agent-header { background: #fff; border: 1.5px solid #e0d080; border-radius: 12px; padding: 14px; margin-bottom: 12px; }
-.agent-header-title { font-weight: 700; font-size: 14px; color: #2a2000; margin-bottom: 4px; }
-.agent-header-sub { font-size: 12px; color: #999; line-height: 1.5; }
+.agent-header-title { font-weight: 700; font-size: 17px; color: #2a2000; margin-bottom: 6px; }
+.agent-header-sub { font-size: 14px; color: #888; line-height: 1.6; }
 .agent-quick { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
 .agent-quick-btn { padding: 6px 11px; border-radius: 20px; font-size: 11px; font-weight: 700; cursor: pointer; border: 1.5px solid #e0d080; background: #fffdf0; color: #5a4a00; font-family: inherit; transition: all 0.15s; white-space: nowrap; }
 .agent-quick-btn:hover { background: #e8c84a; border-color: #c8a830; color: #2a2000; }
-.chat-messages { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; padding: 4px 2px; margin-bottom: 12px; }
+.chat-messages { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; padding: 4px 2px; margin-bottom: 12px; -webkit-overflow-scrolling: touch; }
 .msg { display: flex; gap: 8px; align-items: flex-start; }
 .msg.user { flex-direction: row-reverse; }
 .msg-bubble { max-width: 82%; padding: 12px 14px; border-radius: 14px; font-size: 15px; line-height: 1.6; }
@@ -141,27 +141,27 @@ body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', san
 .typing-dot:nth-child(2) { animation-delay: 0.2s; }
 .typing-dot:nth-child(3) { animation-delay: 0.4s; }
 @keyframes blink { 0%,80%,100%{opacity:0.2} 40%{opacity:1} }
-.chat-input-area { display: flex; gap: 8px; align-items: flex-end; }
-.chat-input { flex: 1; border: 1.5px solid #e0d080; border-radius: 12px; padding: 12px 14px; font-size: 15px; font-family: inherit; resize: none; background: #fff; color: #333; outline: none; min-height: 44px; max-height: 120px; line-height: 1.5; }
+.chat-input-area { display: flex; gap: 8px; align-items: flex-end; padding-bottom: env(safe-area-inset-bottom); }
+.chat-input { flex: 1; border: 1.5px solid #e0d080; border-radius: 12px; padding: 14px 16px; font-size: 17px; font-family: inherit; resize: none; background: #fff; color: #333; outline: none; min-height: 52px; max-height: 120px; line-height: 1.6; }
 .chat-input:focus { border-color: #c8a830; }
-.chat-send { width: 44px; height: 44px; border-radius: 12px; background: #e8c84a; border: none; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.15s; }
+.chat-send { width: 52px; height: 52px; border-radius: 12px; background: #e8c84a; border: none; cursor: pointer; font-size: 22px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.15s; }
 .chat-send:hover { background: #d4b43a; }
 .chat-send:disabled { background: #f0e890; cursor: not-allowed; }
 
 /* ── AI 에이전트 ── */
 .tab-ai { background: #2a2000 !important; color: #e8c84a !important; }
 .tab-ai.active { background: #faf8f0 !important; color: #2a2000 !important; }
-.agent-wrap { display: flex; flex-direction: column; height: calc(100vh - 200px); min-height: 480px; }
+.agent-wrap { display: flex; flex-direction: column; height: calc(100dvh - 140px); }
 .agent-header { background: #fff; border: 1.5px solid #e0d080; border-radius: 12px; padding: 14px; margin-bottom: 12px; }
-.agent-header-title { font-weight: 700; font-size: 14px; color: #2a2000; margin-bottom: 4px; }
-.agent-header-sub { font-size: 12px; color: #999; line-height: 1.5; }
+.agent-header-title { font-weight: 700; font-size: 17px; color: #2a2000; margin-bottom: 6px; }
+.agent-header-sub { font-size: 14px; color: #888; line-height: 1.6; }
 .agent-quick { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
-.agent-quick-btn { padding: 6px 11px; border-radius: 20px; font-size: 11px; font-weight: 700; cursor: pointer; border: 1.5px solid #e0d080; background: #fffdf0; color: #5a4a00; font-family: inherit; transition: all 0.15s; }
+.agent-quick-btn { padding: 8px 14px; border-radius: 20px; font-size: 14px; font-weight: 700; cursor: pointer; border: 1.5px solid #e0d080; background: #fffdf0; color: #5a4a00; font-family: inherit; transition: all 0.15s; }
 .agent-quick-btn:hover { background: #e8c84a; border-color: #c8a830; color: #2a2000; }
-.chat-messages { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; padding: 4px 2px; margin-bottom: 12px; }
+.chat-messages { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; padding: 4px 2px; margin-bottom: 12px; -webkit-overflow-scrolling: touch; }
 .msg { display: flex; gap: 8px; align-items: flex-start; }
 .msg.user { flex-direction: row-reverse; }
-.msg-bubble { max-width: 82%; padding: 12px 14px; border-radius: 14px; font-size: 15px; line-height: 1.6; white-space: pre-wrap; }
+.msg-bubble { max-width: 88%; padding: 14px 16px; border-radius: 14px; font-size: 17px; line-height: 1.7; white-space: pre-wrap; }
 .msg.ai .msg-bubble { background: #fff; border: 1.5px solid #e0d080; color: #333; border-radius: 4px 14px 14px 14px; }
 .msg.user .msg-bubble { background: #e8c84a; color: #2a2000; border-radius: 14px 4px 14px 14px; font-weight: 500; }
 .msg-avatar { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; margin-top: 2px; }
@@ -171,10 +171,10 @@ body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', san
 .typing-dot { width: 7px; height: 7px; border-radius: 50%; background: #ccc; animation: blink 1.2s infinite; }
 .typing-dot:nth-child(2){animation-delay:0.2s} .typing-dot:nth-child(3){animation-delay:0.4s}
 @keyframes blink{0%,80%,100%{opacity:0.2}40%{opacity:1}}
-.chat-input-area { display: flex; gap: 8px; align-items: flex-end; }
-.chat-input { flex: 1; border: 1.5px solid #e0d080; border-radius: 12px; padding: 12px 14px; font-size: 15px; font-family: inherit; resize: none; background: #fff; color: #333; outline: none; min-height: 44px; max-height: 120px; line-height: 1.5; }
+.chat-input-area { display: flex; gap: 8px; align-items: flex-end; padding-bottom: env(safe-area-inset-bottom); }
+.chat-input { flex: 1; border: 1.5px solid #e0d080; border-radius: 12px; padding: 14px 16px; font-size: 17px; font-family: inherit; resize: none; background: #fff; color: #333; outline: none; min-height: 52px; max-height: 120px; line-height: 1.6; }
 .chat-input:focus { border-color: #c8a830; }
-.chat-send { width: 44px; height: 44px; border-radius: 12px; background: #e8c84a; border: none; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.15s; }
+.chat-send { width: 52px; height: 52px; border-radius: 12px; background: #e8c84a; border: none; cursor: pointer; font-size: 22px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.15s; }
 .chat-send:hover { background: #d4b43a; }
 .chat-send:disabled { background: #f0e890; cursor: not-allowed; }
 
@@ -195,16 +195,16 @@ body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', san
 .translate-label { font-size: 11px; font-weight: 700; color: #999; letter-spacing: 0.5px; margin-bottom: 8px; }
 .translate-textarea { width: 100%; border: 1.5px solid #e0d080; border-radius: 10px; padding: 12px 14px; font-size: 16px; font-family: inherit; resize: none; background: #fdfbee; color: #333; outline: none; min-height: 80px; line-height: 1.6; box-sizing: border-box; }
 .translate-textarea:focus { border-color: #c8a830; background: #fff; }
-.translate-btn { width: 100%; margin-top: 10px; padding: 14px; border-radius: 10px; background: #e8c84a; border: none; font-size: 17px; font-weight: 700; color: #2a2000; cursor: pointer; font-family: inherit; transition: background 0.15s; }
+.translate-btn { width: 100%; margin-top: 10px; padding: 18px; border-radius: 10px; background: #e8c84a; border: none; font-size: 19px; font-weight: 700; color: #2a2000; cursor: pointer; font-family: inherit; transition: background 0.15s; }
 .translate-btn:hover { background: #d4b43a; }
 .translate-btn:disabled { background: #f0e890; color: #aaa; cursor: not-allowed; }
 .translate-result-card { background: #fff; border: 1.5px solid #e0d080; border-radius: 12px; padding: 14px; display: none; }
 .translate-result-card.visible { display: block; }
 .result-lang-badge { display: inline-flex; align-items: center; gap: 6px; background: #fdf3c0; border: 1px solid #e8d070; border-radius: 8px; padding: 4px 10px; font-size: 11px; font-weight: 700; color: #7a5c00; margin-bottom: 10px; }
-.result-translated { font-size: 22px; font-weight: 700; color: #2a2000; line-height: 1.6; margin-bottom: 10px; word-break: keep-all; }
+.result-translated { font-size: 26px; font-weight: 700; color: #2a2000; line-height: 1.6; margin-bottom: 10px; word-break: keep-all; }
 .result-divider { border: none; border-top: 1px dashed #e0d080; margin: 10px 0; }
 .result-pronunciation-label { font-size: 11px; color: #999; margin-bottom: 5px; }
-.result-pronunciation { font-size: 16px; color: #666; line-height: 1.6; font-style: italic; }
+.result-pronunciation { font-size: 18px; color: #555; line-height: 1.6; font-style: italic; }
 .copy-btn { display: inline-flex; align-items: center; gap: 5px; margin-top: 10px; padding: 6px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; border: 1.5px solid #e0d080; background: #fffdf0; color: #5a4a00; cursor: pointer; font-family: inherit; transition: all 0.15s; }
 .copy-btn:hover { background: #e8c84a; }
 .translate-quick { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
