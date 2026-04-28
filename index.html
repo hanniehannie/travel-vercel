@@ -1209,6 +1209,40 @@ async function doTranslate() {
 }
 
 
+
+function copyAlt(el) {
+  const text = el.childNodes[0].textContent.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = el.querySelector('.alt-copy');
+    btn.textContent = '✅';
+    setTimeout(() => btn.textContent = '복사', 1500);
+  });
+}
+
+function copyResult() {
+  const text = document.getElementById('t-result-text').textContent;
+  const pron = document.getElementById('t-result-pron').textContent;
+  navigator.clipboard.writeText(text + '\n(' + pron + ')').then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = '✅ 복사됨!';
+    setTimeout(() => btn.textContent = '📋 복사하기', 1500);
+  });
+}
+
+function renderHistory() {
+  const list = document.getElementById('t-history-list');
+  if (!translateHistory.length) {
+    list.innerHTML = '<div class="empty-history">아직 번역 기록이 없어요</div>';
+    return;
+  }
+  list.innerHTML = translateHistory.map(h => `
+    <div class="history-item" onclick="setTranslateInput('${h.orig.replace(/'/g,"\'")}')">
+      <div class="history-orig">🇰🇷 ${h.orig}</div>
+      <div class="history-trans">${h.flag} ${h.trans}</div>
+      <div class="history-pron">${h.pron}</div>
+    </div>`).join('');
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initTranslateLang();
   const ta = document.getElementById('t-input');
