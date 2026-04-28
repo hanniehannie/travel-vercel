@@ -1153,25 +1153,54 @@ async function doTranslate() {
   const btn = document.getElementById('t-btn');
   btn.disabled = true; btn.textContent = '번역 중...';
   const info = TRIP_SCHEDULE.find(s => s.lang === currentLang);
-  const LANGBLY_API_KEY = 'SBMsxAfYHfgUD9uSDs15AK';
+
+  const prompt = `다음 한국어 문장을 ${info.name}로 번역해주세요.
+
+중요 규칙:
+1. 교과서식 직역이 아닌, 현지인이 일상에서 실제로 자주 쓰는 자연스러운 표현으로 번역하세요.
+2. 더 자연스럽거나 생동감 있는 현지 표현이 있다면 그것을 우선적으로 사용하세요.
+   예) "정말 맛있어요" → "¡Buenísimo!" (스페인어), "C'est délicieux !" (프랑스어)
+3. 만약 더 자연스러운 대안 표현이 있다면 alternatives 배열에 1~2개 추가하세요.
+4. pronunciation은 반드시 한국어로 읽는 발음을 적어주세요. 예) "돈데 에스따 엘 바뇨"
+5. 반드시 아래 JSON 형식으로만 응답하세요. 다른 텍스트나 마크다운 코드블록은 절대 포함하지 마세요.
+
+{"translated": "가장 자연스러운 현지 표현", "pronunciation": "한국어로 읽는 발음", "alternatives": ["대안표현1 (발음1)", "대안표현2 (발음2)"]}
+
+한국어 문장: ${input}`;
+
   try {
-    const response = await fetch('https://api.langbly.com/language/translate/v2', {
+    const response = await fetch('/api/claude', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${LANGBLY_API_KEY}` },
-      body: JSON.stringify({ q: input, source: 'ko', target: info.lang, format: 'text' })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-5',
+        max_tokens: 500,
+        messages: [{ role: 'user', content: [{ type: 'text', text: prompt }] }]
+      })
     });
     const data = await response.json();
-    if (!data.data?.translations?.[0]?.translatedText) throw new Error('번역 결과 없음: ' + JSON.stringify(data));
-    const translated = data.data.translations[0].translatedText;
-    const pron = generatePronunciation(translated, info.lang);
+    if (!data.content) throw new Error('API 오류: ' + JSON.stringify(data));
+    const raw = data.content[0].text.replace(/```json|```/g, '').trim();
+    const result = JSON.parse(raw);
+
     document.getElementById('t-result-badge').textContent = info.flag + ' ' + info.name;
-    document.getElementById('t-result-text').textContent = translated;
-    document.getElementById('t-result-pron').textContent = pron;
-    document.getElementById('t-alternatives').style.display = 'none';
+    document.getElementById('t-result-text').textContent = result.translated;
+    document.getElementById('t-result-pron').textContent = result.pronunciation;
+
+    const altWrap = document.getElementById('t-alternatives');
+    if (result.alternatives && result.alternatives.length) {
+      altWrap.innerHTML = '<div class="alt-label">💬 다른 표현도 있어요</div>' +
+        result.alternatives.map(a => `<div class="alt-item" onclick="copyAlt(this)">${a} <span class="alt-copy">복사</span></div>`).join('');
+      altWrap.style.display = 'block';
+    } else {
+      altWrap.style.display = 'none';
+    }
     document.getElementById('t-result-card').classList.add('visible');
-    translateHistory.unshift({ orig: input, trans: translated, pron: pron, flag: info.flag });
+
+    translateHistory.unshift({ orig: input, trans: result.translated, pron: result.pronunciation, flag: info.flag });
     if (translateHistory.length > 10) translateHistory.pop();
     renderHistory();
+
   } catch(e) {
     alert('번역 중 오류가 발생했어요. 다시 시도해 주세요.');
     console.error(e);
@@ -1179,38 +1208,6 @@ async function doTranslate() {
   btn.disabled = false; btn.textContent = '번역하기 ✨';
 }
 
-function copyAlt(el) {
-  const text = el.childNodes[0].textContent.trim();
-  navigator.clipboard.writeText(text).then(() => {
-    const btn = el.querySelector('.alt-copy');
-    btn.textContent = '✅';
-    setTimeout(() => btn.textContent = '복사', 1500);
-  });
-}
-
-function copyResult() {
-  const text = document.getElementById('t-result-text').textContent;
-  const pron = document.getElementById('t-result-pron').textContent;
-  navigator.clipboard.writeText(text + '\n(' + pron + ')').then(() => {
-    const btn = document.querySelector('.copy-btn');
-    btn.textContent = '✅ 복사됨!';
-    setTimeout(() => btn.textContent = '📋 복사하기', 1500);
-  });
-}
-
-function renderHistory() {
-  const list = document.getElementById('t-history-list');
-  if (!translateHistory.length) {
-    list.innerHTML = '<div class="empty-history">아직 번역 기록이 없어요</div>';
-    return;
-  }
-  list.innerHTML = translateHistory.map(h => `
-    <div class="history-item" onclick="setTranslateInput('${h.orig.replace(/'/g,"\'")}')">
-      <div class="history-orig">🇰🇷 ${h.orig}</div>
-      <div class="history-trans">${h.flag} ${h.trans}</div>
-      <div class="history-pron">${h.pron}</div>
-    </div>`).join('');
-}
 
 document.addEventListener('DOMContentLoaded', () => {
   initTranslateLang();
