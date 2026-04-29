@@ -2246,7 +2246,7 @@ async function loadRestaurants(cityKey) {
         locationRestriction: {
           circle: {
             center: { latitude: city.lat, longitude: city.lng },
-            radius: cityKey === 'barcelona' || cityKey === 'nice' ? 2000 : 1000
+            radius: ['barcelona', 'nice'].includes(cityKey) ? 5000 : ['avignon', 'arles', 'menton'].includes(cityKey) ? 2000 : 3000
           }
         },
         rankPreference: 'POPULARITY'
