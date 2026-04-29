@@ -2254,8 +2254,11 @@ async function loadRestaurants(cityKey) {
     });
 
     const data = await resp.json();
+    const smallCities = ['avignon', 'arles', 'menton'];
+    const minRating = smallCities.includes(cityKey) ? 4.5 : 4.7;
+    const minReviews = smallCities.includes(cityKey) ? 500 : 1000;
     const places = (data.places || [])
-      .filter(p => p.rating >= 4.7 && p.userRatingCount >= 1000)
+      .filter(p => p.rating >= minRating && p.userRatingCount >= minReviews)
       .map(p => ({
         name: p.displayName?.text || '이름 없음',
         city: cityKey,
@@ -2316,7 +2319,9 @@ function renderMapMarkers(list) {
 function renderRestList(list) {
   const el = document.getElementById('rest-list');
   if (!list || list.length === 0) {
-    el.innerHTML = '<div style="text-align:center;padding:30px;color:#9A9080;font-size:14px;">해당 지역에서 조건에 맞는 맛집을 찾지 못했어요.<br><small>(평점 4.7↑ · 리뷰 1,000↑)</small></div>';
+    const isSmall = ['avignon','arles','menton'].includes(currentFilter);
+    const condText = isSmall ? '평점 4.5↑ · 리뷰 500↑' : '평점 4.7↑ · 리뷰 1,000↑';
+    el.innerHTML = `<div style="text-align:center;padding:30px;color:#9A9080;font-size:14px;">해당 지역에서 조건에 맞는 맛집을 찾지 못했어요.<br><small>(${condText})</small></div>`;
     return;
   }
   const sorted = [...list].sort((a, b) => b.rating - a.rating || b.reviews - a.reviews);
