@@ -14,7 +14,7 @@
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', sans-serif; background: #faf8f0; font-size: 16px; -webkit-text-size-adjust: 100%; padding-bottom: env(safe-area-inset-bottom); }
-.header { background: #e8c84a; padding: 20px 20px 16px; }
+.header { background: #e8c84a; padding: 20px 20px 16px; padding-top: max(20px, env(safe-area-inset-top)); }
 .header-home { padding-bottom: 20px; }
 .header-top { display: flex; align-items: center; gap: 14px; }
 .plane-icon { font-size: 30px; }
@@ -39,7 +39,7 @@ body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', san
 .home-btn.btn-ai       { border-left: 5px solid #2a2000; }
 
 /* ── 서브페이지 공통 ── */
-.subpage-header { background: #e8c84a; padding: 14px 16px; display: flex; align-items: center; gap: 12px; position: sticky; top: 0; z-index: 100; padding-top: max(14px, env(safe-area-inset-top)); }
+.subpage-header { background: #e8c84a; padding: 14px 16px; display: flex; align-items: center; gap: 12px; position: sticky; top: 0; z-index: 100; padding-top: max(20px, env(safe-area-inset-top)); }
 .back-btn { background: #2a2000; color: #e8c84a; border: none; border-radius: 10px; padding: 10px 18px; font-size: 17px; font-weight: 700; cursor: pointer; font-family: inherit; flex-shrink: 0; }
 .subpage-title { font-size: 18px; font-weight: 700; color: #2a2000; }
 .content { padding: 14px; }
@@ -159,7 +159,7 @@ body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', san
 /* ── AI 에이전트 ── */
 .tab-ai { background: #2a2000 !important; color: #e8c84a !important; }
 .tab-ai.active { background: #faf8f0 !important; color: #2a2000 !important; }
-.agent-fullscreen { display: flex; flex-direction: column; position: fixed; top: 58px; left: 0; right: 0; bottom: 0; }
+.agent-fullscreen { display: flex; flex-direction: column; position: fixed; top: calc(58px + env(safe-area-inset-top)); left: 0; right: 0; bottom: 0; }
 .quick-scroll { display: flex; gap: 8px; overflow-x: auto; padding: 8px 14px; flex-shrink: 0; background: #faf8f0; border-top: 1px solid #e0d080; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
 .quick-scroll::-webkit-scrollbar { display: none; }
 .agent-header-title { font-weight: 700; font-size: 17px; color: #2a2000; margin-bottom: 6px; }
