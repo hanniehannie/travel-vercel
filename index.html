@@ -835,6 +835,15 @@ body {
   align-items: center;
   gap: 12px;
 }
+.rest-rank {
+  width: 26px; height: 26px;
+  background: var(--gold-pale);
+  border: 1px solid var(--gold-light);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; color: var(--ink-soft);
+  flex-shrink: 0;
+}
 .rest-card:active { background: var(--gold-pale); }
 .rest-card-left { flex: 1; min-width: 0; }
 .rest-card-name { font-size: 16px; font-weight: 700; color: var(--ink); letter-spacing: -0.2px; }
@@ -887,7 +896,7 @@ body {
 }
 .popup-name { font-size: 22px; font-weight: 700; color: var(--ink); margin-bottom: 6px; letter-spacing: -0.3px; }
 .popup-meta { font-size: 14px; color: var(--gray-dark); margin-bottom: 12px; }
-.popup-menu { font-size: 15px; color: var(--ink-soft); margin-bottom: 8px; line-height: 1.6; }
+.popup-menu { font-size: 13px; color: var(--gray-dark); margin-bottom: 8px; line-height: 1.6; }
 .popup-note { font-size: 13px; color: var(--gray-dark); margin-bottom: 16px; line-height: 1.5; }
 .popup-map-link {
   display: block;
@@ -2166,172 +2175,210 @@ if ('serviceWorker' in navigator) {
 </script>
 
 <script>
-// ── 맛집 데이터 (평점 4.7↑, 리뷰 1000↑ 검증) ──
-const RESTAURANTS = [
-  // 바르셀로나
-  { id: 1, name: 'Vinitus', city: 'barcelona', cityName: '바르셀로나', rating: 4.8, reviews: 2300,
-    menu: '꿀대구 · 빠에야 · 하몽+계란+감자', note: '한국인 유명 맛집 · 예약 불가 · 웨이팅 필수',
-    lat: 41.3807, lng: 2.1730, status: 'recommend',
-    mapUrl: 'https://maps.google.com/?q=Vinitus+Barcelona' },
-  { id: 2, name: 'La Flauta', city: 'barcelona', cityName: '바르셀로나', rating: 4.7, reviews: 1800,
-    menu: '꿀대구 · 스페인식 오믈렛 · 다양한 타파스', note: '전체적으로 다 맛있는 가성비 맛집',
-    lat: 41.3951, lng: 2.1615, status: 'recommend',
-    mapUrl: 'https://maps.google.com/?q=La+Flauta+Barcelona' },
-  { id: 3, name: 'El Glop', city: 'barcelona', cityName: '바르셀로나', rating: 4.7, reviews: 1200,
-    menu: '이베리코 스테이크 · 빠에야 · 칼솟', note: '전통 카탈루냐 음식점 · 가우디점 후기 좋음',
-    lat: 41.4036, lng: 2.1583, status: 'recommend',
-    mapUrl: 'https://maps.google.com/?q=El+Glop+Barcelona' },
-  { id: 4, name: 'Sartoria Panatieri', city: 'barcelona', cityName: '바르셀로나', rating: 4.9, reviews: 3100,
-    menu: '화덕 피자', note: '2025년 세계 11위 · 예약 가능 · 강력 추천',
-    lat: 41.4028, lng: 2.1742, status: 'recommend',
-    mapUrl: 'https://maps.google.com/?q=Sartoria+Panatieri+Barcelona' },
-  { id: 5, name: 'Gran Viana', city: 'barcelona', cityName: '바르셀로나', rating: 4.7, reviews: 1100,
-    menu: '퓨전 타파스', note: '5/2 저녁 확정',
-    lat: 41.3887, lng: 2.1699, status: 'confirmed',
-    mapUrl: 'https://maps.google.com/?q=Gran+Viana+Barcelona' },
-  // 아비뇽
-  { id: 6, name: 'Restaurant Fou de Fafa', city: 'avignon', cityName: '아비뇽', rating: 4.8, reviews: 1500,
-    menu: '프랑스 가정식 3코스', note: '5/4 저녁 확정 · 아비뇽 최고 인기',
-    lat: 43.9493, lng: 4.8055, status: 'confirmed',
-    mapUrl: 'https://maps.google.com/?q=Restaurant+Fou+de+Fafa+Avignon' },
-  // 아를
-  { id: 7, name: 'Le Criquet', city: 'arles', cityName: '아를', rating: 4.8, reviews: 1200,
-    menu: '지중해식 요리 점심 코스', note: '5/5 점심 확정 · 아를 최고 인기',
-    lat: 43.6767, lng: 4.6279, status: 'confirmed',
-    mapUrl: 'https://maps.google.com/?q=Le+Criquet+Arles' },
-  // 액상프로방스
-  { id: 8, name: 'Grenache', city: 'aix', cityName: '액상프로방스', rating: 4.7, reviews: 1050,
-    menu: '프로방스 현지 요리', note: '미슐랭 가이드 추천 · 예약 권장',
-    lat: 43.5297, lng: 5.4474, status: 'recommend',
-    mapUrl: 'https://maps.google.com/?q=Grenache+Aix-en-Provence' },
-  // 니스
-  { id: 9, name: 'Chez Pipo', city: 'nice', cityName: '니스', rating: 4.7, reviews: 2800,
-    menu: '소카(Socca) · 니스 전통 요리', note: '니스 현지인 맛집 · 소카는 꼭 먹어야 할 명물',
-    lat: 43.7142, lng: 7.2590, status: 'recommend',
-    mapUrl: 'https://maps.google.com/?q=Chez+Pipo+Nice' },
-  { id: 10, name: 'La Merenda', city: 'nice', cityName: '니스', rating: 4.8, reviews: 1700,
-    menu: '스토카피수 · 니스식 라비올리', note: '예약 불가 · 소규모 정통 니스 요리',
-    lat: 43.6967, lng: 7.2718, status: 'recommend',
-    mapUrl: 'https://maps.google.com/?q=La+Merenda+Nice' },
-  // 망통
-  { id: 11, name: 'Mirazur', city: 'menton', cityName: '망통', rating: 4.9, reviews: 1300,
-    menu: '모던 프렌치 파인다이닝', note: '세계 최고 레스토랑 1위 수상 · 특별한 날에 추천',
-    lat: 43.7750, lng: 7.5020, status: 'recommend',
-    mapUrl: 'https://maps.google.com/?q=Mirazur+Menton' },
-];
-
+const MAPS_KEY = 'AIzaSyDtDQYs-YNAMu_mrE0JZYikg-HfvEd_UR8';
 const CITY_CENTERS = {
-  all:       { lat: 43.5, lng: 4.5, zoom: 5 },
-  barcelona: { lat: 41.390, lng: 2.170, zoom: 13 },
-  avignon:   { lat: 43.949, lng: 4.806, zoom: 14 },
-  arles:     { lat: 43.677, lng: 4.628, zoom: 14 },
-  aix:       { lat: 43.530, lng: 5.447, zoom: 14 },
-  nice:      { lat: 43.710, lng: 7.262, zoom: 14 },
-  menton:    { lat: 43.775, lng: 7.500, zoom: 14 },
+  all:       { lat: 43.8, lng: 5.0, zoom: 5, name: '전체' },
+  barcelona: { lat: 41.390, lng: 2.170, zoom: 14, name: '바르셀로나' },
+  avignon:   { lat: 43.949, lng: 4.806, zoom: 15, name: '아비뇽' },
+  arles:     { lat: 43.677, lng: 4.628, zoom: 15, name: '아를' },
+  aix:       { lat: 43.530, lng: 5.447, zoom: 15, name: '액상프로방스' },
+  nice:      { lat: 43.710, lng: 7.262, zoom: 14, name: '니스' },
+  menton:    { lat: 43.775, lng: 7.500, zoom: 15, name: '망통' },
 };
 
 let gmap = null;
 let markers = [];
 let currentFilter = 'all';
+let mapInitialized = false;
+let allRestaurants = {};
 
 function initMap() {
+  if (mapInitialized) return;
+  mapInitialized = true;
+
   gmap = new google.maps.Map(document.getElementById('gmap'), {
-    center: { lat: 43.5, lng: 5.0 },
+    center: { lat: 43.8, lng: 5.0 },
     zoom: 5,
     disableDefaultUI: true,
     zoomControl: true,
+    gestureHandling: 'greedy',
     styles: [
-      { featureType: 'poi', elementType: 'labels', stylers: [{ visibility: 'off' }] },
+      { featureType: 'poi.business', stylers: [{ visibility: 'off' }] },
       { featureType: 'transit', elementType: 'labels', stylers: [{ visibility: 'off' }] }
     ]
   });
-  renderMapMarkers('all');
-  renderRestList('all');
+
+  // 바르셀로나 첫 로드
+  loadRestaurants('barcelona');
 }
 
-function renderMapMarkers(filter) {
+async function loadRestaurants(cityKey) {
+  const city = CITY_CENTERS[cityKey];
+  if (!city || cityKey === 'all') {
+    // 전체 보기: 모든 도시 데이터 합치기
+    const allData = Object.values(allRestaurants).flat();
+    renderMapMarkers(allData);
+    renderRestList(allData);
+    gmap.setCenter({ lat: 43.8, lng: 5.0 });
+    gmap.setZoom(5);
+    return;
+  }
+
+  // 캐시 확인
+  if (allRestaurants[cityKey]) {
+    renderMapMarkers(allRestaurants[cityKey]);
+    renderRestList(allRestaurants[cityKey]);
+    gmap.setCenter({ lat: city.lat, lng: city.lng });
+    gmap.setZoom(city.zoom);
+    return;
+  }
+
+  showLoading(true);
+
+  try {
+    // Places API (New) - Nearby Search
+    const resp = await fetch('/api/places', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        includedTypes: ['restaurant'],
+        maxResultCount: 20,
+        locationRestriction: {
+          circle: {
+            center: { latitude: city.lat, longitude: city.lng },
+            radius: cityKey === 'barcelona' || cityKey === 'nice' ? 2000 : 1000
+          }
+        },
+        rankPreference: 'POPULARITY'
+      })
+    });
+
+    const data = await resp.json();
+    const places = (data.places || [])
+      .filter(p => p.rating >= 4.7 && p.userRatingCount >= 1000)
+      .map(p => ({
+        name: p.displayName?.text || '이름 없음',
+        city: cityKey,
+        cityName: city.name,
+        rating: p.rating,
+        reviews: p.userRatingCount,
+        lat: p.location.latitude,
+        lng: p.location.longitude,
+        address: p.formattedAddress || '',
+        type: p.primaryTypeDisplayName?.text || '레스토랑',
+        mapUrl: p.googleMapsUri || `https://maps.google.com/?q=${p.location.latitude},${p.location.longitude}`,
+        id: p.id
+      }));
+
+    allRestaurants[cityKey] = places;
+
+    gmap.setCenter({ lat: city.lat, lng: city.lng });
+    gmap.setZoom(city.zoom);
+    renderMapMarkers(places);
+    renderRestList(places);
+
+  } catch(e) {
+    console.error('Places API 오류:', e);
+    showError('맛집 정보를 불러오는 데 실패했어요. 다시 시도해 주세요.');
+  }
+
+  showLoading(false);
+}
+
+function renderMapMarkers(list) {
   markers.forEach(m => m.setMap(null));
   markers = [];
-  const list = filter === 'all' ? RESTAURANTS : RESTAURANTS.filter(r => r.city === filter);
-  const center = CITY_CENTERS[filter] || CITY_CENTERS.all;
-  gmap.setCenter({ lat: center.lat, lng: center.lng });
-  gmap.setZoom(center.zoom);
-
   list.forEach(r => {
-    const color = r.status === 'confirmed' ? '#F5C842' : '#34A853';
     const marker = new google.maps.Marker({
       position: { lat: r.lat, lng: r.lng },
       map: gmap,
       title: r.name,
       icon: {
         path: google.maps.SymbolPath.CIRCLE,
-        scale: 10,
-        fillColor: color,
+        scale: 11,
+        fillColor: '#F5C842',
         fillOpacity: 1,
-        strokeColor: '#fff',
+        strokeColor: '#1A1200',
         strokeWeight: 2,
       },
-      label: { text: r.rating.toFixed(1), color: '#1A1200', fontSize: '9px', fontWeight: '700' }
+      label: {
+        text: r.rating.toFixed(1),
+        color: '#1A1200',
+        fontSize: '9px',
+        fontWeight: '700'
+      }
     });
     marker.addListener('click', () => showPopup(r));
     markers.push(marker);
   });
 }
 
-function renderRestList(filter) {
-  const list = filter === 'all' ? RESTAURANTS : RESTAURANTS.filter(r => r.city === filter);
+function renderRestList(list) {
   const el = document.getElementById('rest-list');
-  el.innerHTML = list.map(r => `
-    <div class="rest-card" onclick="showPopup(${JSON.stringify(r).replace(/"/g, '&quot;')})">
+  if (!list || list.length === 0) {
+    el.innerHTML = '<div style="text-align:center;padding:30px;color:#9A9080;font-size:14px;">해당 지역에서 조건에 맞는 맛집을 찾지 못했어요.<br><small>(평점 4.7↑ · 리뷰 1,000↑)</small></div>';
+    return;
+  }
+  const sorted = [...list].sort((a, b) => b.rating - a.rating || b.reviews - a.reviews);
+  el.innerHTML = sorted.map((r, i) => `
+    <div class="rest-card" onclick='showPopup(${JSON.stringify(r).replace(/'/g, "&#39;")})'>
+      <div class="rest-rank">${i + 1}</div>
       <div class="rest-card-left">
         <div class="rest-card-name">${r.name}</div>
-        <div class="rest-card-city">📍 ${r.cityName}</div>
+        <div class="rest-card-city">📍 ${r.cityName} &nbsp;·&nbsp; ${r.type}</div>
         <div class="rest-card-rating">
-          <span class="rest-rating-stars">⭐ ${r.rating}</span>
-          <span class="rest-rating-count">리뷰 ${(r.reviews/1000).toFixed(1)}k개</span>
+          <span class="rest-rating-stars">⭐ ${r.rating.toFixed(1)}</span>
+          <span class="rest-rating-count">리뷰 ${r.reviews >= 1000 ? (r.reviews/1000).toFixed(1) + 'k' : r.reviews}개</span>
         </div>
       </div>
-      <span class="rest-card-badge ${r.status === 'confirmed' ? 'badge-confirmed' : 'badge-recommend'}">
-        ${r.status === 'confirmed' ? '✅ 확정' : '🌟 추천'}
-      </span>
       <span class="rest-arrow">›</span>
     </div>
   `).join('');
-}
-
-function filterMap(city, btn) {
-  currentFilter = city;
-  document.querySelectorAll('.map-filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  renderMapMarkers(city);
-  renderRestList(city);
 }
 
 function showPopup(r) {
   if (typeof r === 'string') r = JSON.parse(r);
   document.getElementById('popup-name').textContent = r.name;
   document.getElementById('popup-meta').innerHTML =
-    `📍 ${r.cityName} &nbsp;·&nbsp; ⭐ ${r.rating} &nbsp;·&nbsp; 리뷰 ${r.reviews.toLocaleString()}개`;
-  document.getElementById('popup-menu').textContent = '🍽️ ' + r.menu;
-  document.getElementById('popup-note').textContent = r.note;
+    `📍 ${r.cityName} &nbsp;·&nbsp; ${r.type}<br>⭐ ${r.rating.toFixed(1)} &nbsp;·&nbsp; 리뷰 ${r.reviews.toLocaleString()}개`;
+  document.getElementById('popup-menu').textContent = r.address;
+  document.getElementById('popup-note').textContent = '';
   document.getElementById('popup-map-link').href = r.mapUrl;
   document.getElementById('rest-popup').style.display = 'flex';
-  if (gmap) gmap.setCenter({ lat: r.lat, lng: r.lng });
+  if (gmap) gmap.panTo({ lat: r.lat, lng: r.lng });
 }
 
 function closePopup() {
   document.getElementById('rest-popup').style.display = 'none';
 }
 
-// 맛집 지도 탭 열 때 지도 초기화
+function filterMap(city, btn) {
+  currentFilter = city;
+  document.querySelectorAll('.map-filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  loadRestaurants(city);
+}
+
+function showLoading(show) {
+  const el = document.getElementById('rest-list');
+  if (show) el.innerHTML = '<div style="text-align:center;padding:30px;color:#9A9080;font-size:14px;">🔍 맛집 불러오는 중...</div>';
+}
+
+function showError(msg) {
+  document.getElementById('rest-list').innerHTML =
+    `<div style="text-align:center;padding:30px;color:#CC4A15;font-size:14px;">${msg}</div>`;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const origOpen = window.openPage;
   window.openPage = function(name) {
     origOpen(name);
     if (name === 'map') {
       setTimeout(() => {
-        if (!gmap && typeof google !== 'undefined') initMap();
-        else if (gmap) {
+        if (!mapInitialized && typeof google !== 'undefined') {
+          initMap();
+          loadRestaurants('barcelona');
+        } else if (gmap) {
           google.maps.event.trigger(gmap, 'resize');
         }
       }, 150);
@@ -2343,6 +2390,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtDQYs-YNAMu_mrE0JZYikg-HfvEd_UR8">
 </script>
+
 
 </body>
 </html>
