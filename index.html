@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -30,891 +31,960 @@
   --safe-bot: env(safe-area-inset-bottom, 0px);
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+- { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
 body {
-  font-family: 'Noto Sans KR', sans-serif;
-  background: var(--white);
-  color: var(--ink);
-  font-size: 16px;
-  -webkit-text-size-adjust: 100%;
-  overscroll-behavior: none;
+font-family: ‘Noto Sans KR’, sans-serif;
+background: var(–white);
+color: var(–ink);
+font-size: 16px;
+-webkit-text-size-adjust: 100%;
+overscroll-behavior: none;
 }
 
 /* ── 홈 화면 ── */
-.home-screen { 
-  min-height: 100dvh;
-  background: var(--white);
-  display: flex;
-  flex-direction: column;
+.home-screen {
+min-height: 100dvh;
+background: var(–white);
+display: flex;
+flex-direction: column;
 }
 
 .home-hero {
-  background: var(--gold);
-  padding: calc(var(--safe-top) + 28px) 24px 32px;
-  position: relative;
-  overflow: hidden;
+background: var(–gold);
+padding: calc(var(–safe-top) + 28px) 24px 32px;
+position: relative;
+overflow: hidden;
 }
 
 .home-hero::before {
-  content: '';
-  position: absolute;
-  top: -40px; right: -40px;
-  width: 200px; height: 200px;
-  background: var(--gold-light);
-  border-radius: 50%;
-  opacity: 0.4;
+content: ‘’;
+position: absolute;
+top: -40px; right: -40px;
+width: 200px; height: 200px;
+background: var(–gold-light);
+border-radius: 50%;
+opacity: 0.4;
 }
 
 .home-hero::after {
-  content: '';
-  position: absolute;
-  bottom: -60px; left: -20px;
-  width: 160px; height: 160px;
-  background: var(--gold-dark);
-  border-radius: 50%;
-  opacity: 0.15;
+content: ‘’;
+position: absolute;
+bottom: -60px; left: -20px;
+width: 160px; height: 160px;
+background: var(–gold-dark);
+border-radius: 50%;
+opacity: 0.15;
 }
 
 .hero-eyebrow {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-bottom: 8px;
-  position: relative; z-index: 1;
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 2.5px;
+text-transform: uppercase;
+color: var(–ink-soft);
+margin-bottom: 8px;
+position: relative; z-index: 1;
 }
 
 .hero-title {
-  font-size: 26px;
-  font-weight: 900;
-  color: var(--ink);
-  line-height: 1.2;
-  margin-bottom: 4px;
-  position: relative; z-index: 1;
-  letter-spacing: -0.8px;
+font-size: 26px;
+font-weight: 900;
+color: var(–ink);
+line-height: 1.2;
+margin-bottom: 4px;
+position: relative; z-index: 1;
+letter-spacing: -0.8px;
 }
 
 .hero-subtitle {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--ink-soft);
-  margin-bottom: 14px;
-  position: relative; z-index: 1;
+font-size: 14px;
+font-weight: 500;
+color: var(–ink-soft);
+margin-bottom: 14px;
+position: relative; z-index: 1;
 }
 
 .hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--ink);
-  color: var(--gold);
-  font-size: 12px;
-  font-weight: 700;
-  padding: 5px 12px;
-  border-radius: 20px;
-  position: relative; z-index: 1;
-  letter-spacing: 0.3px;
+display: inline-flex;
+align-items: center;
+gap: 6px;
+background: var(–ink);
+color: var(–gold);
+font-size: 12px;
+font-weight: 700;
+padding: 5px 12px;
+border-radius: 20px;
+position: relative; z-index: 1;
+letter-spacing: 0.3px;
 }
 
 .home-menu {
-  flex: 1;
-  padding: 20px 20px calc(var(--safe-bot) + 20px);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
-  gap: 12px;
+flex: 1;
+padding: 20px 20px calc(var(–safe-bot) + 20px);
+display: grid;
+grid-template-columns: 1fr 1fr;
+grid-template-rows: auto auto;
+gap: 12px;
 }
 
 .menu-card {
-  background: var(--white);
-  border: 1.5px solid var(--gray-mid);
-  border-radius: 20px;
-  padding: 20px 14px 18px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-  transition: all 0.18s ease;
-  text-decoration: none;
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  font-family: inherit;
-  text-align: center;
-  min-height: 130px;
+background: var(–white);
+border: 1.5px solid var(–gray-mid);
+border-radius: 20px;
+padding: 20px 14px 18px;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 10px;
+cursor: pointer;
+transition: all 0.18s ease;
+text-decoration: none;
+position: relative;
+overflow: hidden;
+width: 100%;
+font-family: inherit;
+text-align: center;
+min-height: 130px;
 }
 
 .menu-card::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; right: 0;
-  height: 4px;
-  border-radius: 20px 20px 0 0;
-  background: var(--gray-mid);
-  transition: background 0.18s;
+content: ‘’;
+position: absolute;
+left: 0; top: 0; right: 0;
+height: 4px;
+border-radius: 20px 20px 0 0;
+background: var(–gray-mid);
+transition: background 0.18s;
 }
 
-.menu-card.c-schedule::before { background: var(--gold); }
+.menu-card.c-schedule::before { background: var(–gold); }
 .menu-card.c-translate::before { background: #5B9CF6; }
-.menu-card.c-ai::before { background: var(--ink); }
+.menu-card.c-ai::before { background: var(–ink); }
 .menu-card.c-map::before { background: #34A853; }
+.menu-card.c-ticket::before { background: #E8472D; }
+.c-ticket .menu-icon { background: #FFF0EE; }
 
 .menu-card:active {
-  transform: scale(0.98);
-  background: var(--gold-pale);
+transform: scale(0.98);
+background: var(–gold-pale);
 }
 
 .menu-icon {
-  width: 48px; height: 48px;
-  border-radius: 14px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 24px;
-  flex-shrink: 0;
+width: 48px; height: 48px;
+border-radius: 14px;
+display: flex; align-items: center; justify-content: center;
+font-size: 24px;
+flex-shrink: 0;
 }
 
-.c-schedule .menu-icon { background: var(--gold-pale); }
+.c-schedule .menu-icon { background: var(–gold-pale); }
 .c-translate .menu-icon { background: #EBF3FF; }
 .c-ai .menu-icon { background: #F0EDE4; }
 .c-map .menu-icon { background: #E8F5E9; }
 
 .menu-text { flex: 1; }
 .menu-label {
-  font-size: 17px;
-  font-weight: 700;
-  color: var(--ink);
-  letter-spacing: -0.3px;
-  line-height: 1.2;
+font-size: 17px;
+font-weight: 700;
+color: var(–ink);
+letter-spacing: -0.3px;
+line-height: 1.2;
 }
 .menu-desc {
-  font-size: 12px;
-  color: var(--gray-dark);
-  margin-top: 3px;
-  line-height: 1.4;
+font-size: 12px;
+color: var(–gray-dark);
+margin-top: 3px;
+line-height: 1.4;
 }
-
 
 /* ── 서브페이지 ── */
 .subpage { display: none; flex-direction: column; height: 100dvh; }
 .subpage.active { display: flex; }
 
 .sub-header {
-  background: var(--gold);
-  padding: calc(var(--safe-top) + 16px) 18px 16px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-shrink: 0;
-  position: sticky; top: 0; z-index: 100;
+background: var(–gold);
+padding: calc(var(–safe-top) + 16px) 18px 16px;
+display: flex;
+align-items: center;
+gap: 12px;
+flex-shrink: 0;
+position: sticky; top: 0; z-index: 100;
 }
 
 .back-btn {
-  display: flex; align-items: center; gap: 6px;
-  background: var(--ink);
-  color: var(--gold);
-  border: none;
-  border-radius: 12px;
-  padding: 9px 14px;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  font-family: inherit;
-  flex-shrink: 0;
-  letter-spacing: -0.2px;
+display: flex; align-items: center; gap: 6px;
+background: var(–ink);
+color: var(–gold);
+border: none;
+border-radius: 12px;
+padding: 9px 14px;
+font-size: 14px;
+font-weight: 700;
+cursor: pointer;
+font-family: inherit;
+flex-shrink: 0;
+letter-spacing: -0.2px;
 }
 
 .sub-title {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--ink);
-  letter-spacing: -0.3px;
+font-size: 18px;
+font-weight: 700;
+color: var(–ink);
+letter-spacing: -0.3px;
 }
 
 .sub-body {
-  flex: 1;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  padding: 16px 16px calc(var(--safe-bot) + 16px);
-  background: var(--gray);
+flex: 1;
+overflow-y: auto;
+-webkit-overflow-scrolling: touch;
+padding: 16px 16px calc(var(–safe-bot) + 16px);
+background: var(–gray);
 }
 
 /* ── 지도 섹션 ── */
 .map-section {
-  background: var(--white);
-  border-radius: 20px;
-  padding: 16px;
-  margin-bottom: 14px;
-  border: 1px solid var(--gray-mid);
+background: var(–white);
+border-radius: 20px;
+padding: 16px;
+margin-bottom: 14px;
+border: 1px solid var(–gray-mid);
 }
 .map-section-title {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--gray-dark);
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  margin-bottom: 12px;
+font-size: 12px;
+font-weight: 700;
+color: var(–gray-dark);
+letter-spacing: 1.5px;
+text-transform: uppercase;
+margin-bottom: 12px;
 }
 .map-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin-bottom: 12px;
+display: flex;
+flex-wrap: wrap;
+gap: 7px;
+margin-bottom: 12px;
 }
 .map-chip {
-  padding: 7px 13px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  border: 1.5px solid var(--gray-mid);
-  background: var(--white);
-  color: var(--ink-soft);
-  font-family: inherit;
-  transition: all 0.15s;
+padding: 7px 13px;
+border-radius: 20px;
+font-size: 13px;
+font-weight: 600;
+cursor: pointer;
+border: 1.5px solid var(–gray-mid);
+background: var(–white);
+color: var(–ink-soft);
+font-family: inherit;
+transition: all 0.15s;
 }
 .map-chip.active {
-  background: var(--gold);
-  border-color: var(--gold-dark);
-  color: var(--ink);
+background: var(–gold);
+border-color: var(–gold-dark);
+color: var(–ink);
 }
-.map-frame-wrap { display: none; border-radius: 14px; overflow: hidden; border: 1px solid var(--gray-mid); }
+.map-frame-wrap { display: none; border-radius: 14px; overflow: hidden; border: 1px solid var(–gray-mid); }
 .map-frame-wrap.open { display: block; }
 .map-frame-wrap iframe { width: 100%; height: 260px; border: none; display: block; }
 .map-label {
-  background: var(--gold-pale);
-  padding: 8px 12px;
-  font-size: 12px;
-  color: var(--ink-soft);
-  border-top: 1px solid var(--gray-mid);
+background: var(–gold-pale);
+padding: 8px 12px;
+font-size: 12px;
+color: var(–ink-soft);
+border-top: 1px solid var(–gray-mid);
 }
 
 /* ── 일정 카드 ── */
 .day-card {
-  background: var(--white);
-  border-radius: 20px;
-  margin-bottom: 12px;
-  overflow: hidden;
-  border: 1px solid var(--gray-mid);
+background: var(–white);
+border-radius: 20px;
+margin-bottom: 12px;
+overflow: hidden;
+border: 1px solid var(–gray-mid);
 }
 .day-header {
-  padding: 16px 18px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-  user-select: none;
-  background: var(--white);
+padding: 16px 18px;
+display: flex;
+align-items: center;
+gap: 12px;
+cursor: pointer;
+user-select: none;
+background: var(–white);
 }
 .day-num {
-  width: 36px; height: 36px;
-  background: var(--gold);
-  color: var(--ink);
-  font-weight: 900;
-  font-size: 12px;
-  border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  letter-spacing: -0.5px;
+width: 36px; height: 36px;
+background: var(–gold);
+color: var(–ink);
+font-weight: 900;
+font-size: 12px;
+border-radius: 12px;
+display: flex; align-items: center; justify-content: center;
+flex-shrink: 0;
+letter-spacing: -0.5px;
 }
 .day-info { flex: 1; min-width: 0; }
-.day-date { font-weight: 700; font-size: 16px; color: var(--ink); letter-spacing: -0.3px; }
-.day-loc { font-size: 13px; color: var(--gray-dark); margin-top: 2px; }
-.day-toggle { color: var(--gray-dark); font-size: 16px; transition: transform 0.25s ease; flex-shrink: 0; }
+.day-date { font-weight: 700; font-size: 16px; color: var(–ink); letter-spacing: -0.3px; }
+.day-loc { font-size: 13px; color: var(–gray-dark); margin-top: 2px; }
+.day-toggle { color: var(–gray-dark); font-size: 16px; transition: transform 0.25s ease; flex-shrink: 0; }
 .day-toggle.open { transform: rotate(180deg); }
-.day-body { padding: 0 18px 16px; display: none; border-top: 1px solid var(--gray); }
+.day-body { padding: 0 18px 16px; display: none; border-top: 1px solid var(–gray); }
 .day-body.open { display: block; }
 
 .accom-badge {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: var(--gold-pale);
-  border: 1px solid var(--gold-light);
-  border-radius: 10px;
-  padding: 6px 11px;
-  font-size: 12px;
-  color: var(--ink-soft);
-  margin: 12px 0 8px;
-  font-weight: 500;
+display: inline-flex; align-items: center; gap: 6px;
+background: var(–gold-pale);
+border: 1px solid var(–gold-light);
+border-radius: 10px;
+padding: 6px 11px;
+font-size: 12px;
+color: var(–ink-soft);
+margin: 12px 0 8px;
+font-weight: 500;
 }
 
 .schedule-item {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 12px;
-  align-items: flex-start;
-  padding-top: 4px;
+display: flex;
+gap: 12px;
+margin-bottom: 12px;
+align-items: flex-start;
+padding-top: 4px;
 }
 .schedule-time {
-  font-size: 12px;
-  color: var(--gray-dark);
-  min-width: 46px;
-  font-weight: 700;
-  padding-top: 3px;
-  flex-shrink: 0;
-  letter-spacing: -0.2px;
+font-size: 12px;
+color: var(–gray-dark);
+min-width: 46px;
+font-weight: 700;
+padding-top: 3px;
+flex-shrink: 0;
+letter-spacing: -0.2px;
 }
 .schedule-dot {
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  background: var(--gold);
-  border: 2px solid var(--gold-dark);
-  flex-shrink: 0;
-  margin-top: 4px;
+width: 10px; height: 10px;
+border-radius: 50%;
+background: var(–gold);
+border: 2px solid var(–gold-dark);
+flex-shrink: 0;
+margin-top: 4px;
 }
 .schedule-dot.meal { background: #FF7A45; border-color: #E05A25; }
 .schedule-dot.transport { background: #5B9CF6; border-color: #3A7CD4; }
-.schedule-text { font-size: 14px; color: var(--ink); line-height: 1.6; flex: 1; }
+.schedule-text { font-size: 14px; color: var(–ink); line-height: 1.6; flex: 1; }
 .schedule-text ul { list-style: none; margin: 4px 0 0; padding: 0; }
 .schedule-text ul li {
-  font-size: 13px;
-  color: var(--ink-soft);
-  padding: 2px 0 2px 14px;
-  position: relative;
-  line-height: 1.55;
+font-size: 13px;
+color: var(–ink-soft);
+padding: 2px 0 2px 14px;
+position: relative;
+line-height: 1.55;
 }
-.schedule-text ul li::before { content: '·'; position: absolute; left: 3px; color: var(--gold-dark); font-weight: 700; }
-.schedule-label { font-size: 15px; color: var(--ink); font-weight: 600; letter-spacing: -0.2px; }
+.schedule-text ul li::before { content: ‘·’; position: absolute; left: 3px; color: var(–gold-dark); font-weight: 700; }
+.schedule-label { font-size: 15px; color: var(–ink); font-weight: 600; letter-spacing: -0.2px; }
 .schedule-label.meal-label { color: #CC4A15; }
 .note-badge {
-  display: inline-block;
-  background: var(--gray);
-  color: var(--gray-dark);
-  font-size: 11px;
-  padding: 2px 9px;
-  border-radius: 6px;
-  margin-top: 4px;
-  font-weight: 500;
+display: inline-block;
+background: var(–gray);
+color: var(–gray-dark);
+font-size: 11px;
+padding: 2px 9px;
+border-radius: 6px;
+margin-top: 4px;
+font-weight: 500;
 }
 .warn-badge {
-  display: inline-block;
-  background: #FFF0E6;
-  color: #C04A00;
-  font-size: 11px;
-  padding: 2px 9px;
-  border-radius: 6px;
-  margin-top: 4px;
-  border: 1px solid #FFD0B0;
-  font-weight: 600;
+display: inline-block;
+background: #FFF0E6;
+color: #C04A00;
+font-size: 11px;
+padding: 2px 9px;
+border-radius: 6px;
+margin-top: 4px;
+border: 1px solid #FFD0B0;
+font-weight: 600;
 }
 .ticket-badge {
-  display: inline-block;
-  background: #E8F5E8;
-  color: #1A7A1A;
-  font-size: 11px;
-  padding: 2px 9px;
-  border-radius: 6px;
-  margin-top: 4px;
-  border: 1px solid #90CC90;
-  font-weight: 600;
+display: inline-block;
+background: #E8F5E8;
+color: #1A7A1A;
+font-size: 11px;
+padding: 2px 9px;
+border-radius: 6px;
+margin-top: 4px;
+border: 1px solid #90CC90;
+font-weight: 600;
 }
 .meal-badge {
-  display: inline-block;
-  background: #FFF0E6;
-  color: #C04A00;
-  font-size: 11px;
-  padding: 2px 9px;
-  border-radius: 6px;
-  margin-top: 4px;
-  border: 1px solid #FFCCA0;
-  font-weight: 500;
+display: inline-block;
+background: #FFF0E6;
+color: #C04A00;
+font-size: 11px;
+padding: 2px 9px;
+border-radius: 6px;
+margin-top: 4px;
+border: 1px solid #FFCCA0;
+font-weight: 500;
 }
-.divider { border: none; border-top: 1px dashed var(--gray-mid); margin: 8px 0; }
+.divider { border: none; border-top: 1px dashed var(–gray-mid); margin: 8px 0; }
 
 /* ── 번역 탭 ── */
 .translate-wrap { display: flex; flex-direction: column; gap: 14px; }
 .lang-status {
-  background: var(--white);
-  border-radius: 20px;
-  padding: 16px;
-  border: 1px solid var(--gray-mid);
+background: var(–white);
+border-radius: 20px;
+padding: 16px;
+border: 1px solid var(–gray-mid);
 }
 .lang-status-row {
-  display: flex; align-items: center;
-  justify-content: space-between; gap: 10px;
+display: flex; align-items: center;
+justify-content: space-between; gap: 10px;
 }
 .lang-badge { display: flex; align-items: center; gap: 10px; }
 .lang-flag { font-size: 26px; }
-.lang-name { font-size: 16px; font-weight: 700; color: var(--ink); letter-spacing: -0.3px; }
-.lang-date { font-size: 12px; color: var(--gray-dark); margin-top: 2px; }
+.lang-name { font-size: 16px; font-weight: 700; color: var(–ink); letter-spacing: -0.3px; }
+.lang-date { font-size: 12px; color: var(–gray-dark); margin-top: 2px; }
 .lang-toggle-wrap { display: flex; gap: 6px; }
 .lang-toggle-btn {
-  padding: 7px 13px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  border: 1.5px solid var(--gray-mid);
-  background: var(--white);
-  color: var(--gray-dark);
-  font-family: inherit;
-  transition: all 0.15s;
+padding: 7px 13px;
+border-radius: 20px;
+font-size: 13px;
+font-weight: 700;
+cursor: pointer;
+border: 1.5px solid var(–gray-mid);
+background: var(–white);
+color: var(–gray-dark);
+font-family: inherit;
+transition: all 0.15s;
 }
 .lang-toggle-btn.active-lang {
-  background: var(--gold);
-  border-color: var(--gold-dark);
-  color: var(--ink);
+background: var(–gold);
+border-color: var(–gold-dark);
+color: var(–ink);
 }
 .translate-input-card {
-  background: var(--white);
-  border-radius: 20px;
-  padding: 16px;
-  border: 1px solid var(--gray-mid);
+background: var(–white);
+border-radius: 20px;
+padding: 16px;
+border: 1px solid var(–gray-mid);
 }
 .translate-label {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--gray-dark);
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  margin-bottom: 10px;
+font-size: 11px;
+font-weight: 700;
+color: var(–gray-dark);
+letter-spacing: 1.5px;
+text-transform: uppercase;
+margin-bottom: 10px;
 }
 .translate-textarea {
-  width: 100%;
-  border: 1.5px solid var(--gray-mid);
-  border-radius: 14px;
-  padding: 13px 15px;
-  font-size: 17px;
-  font-family: inherit;
-  resize: none;
-  background: var(--gray);
-  color: var(--ink);
-  outline: none;
-  min-height: 80px;
-  line-height: 1.6;
-  transition: border-color 0.15s;
+width: 100%;
+border: 1.5px solid var(–gray-mid);
+border-radius: 14px;
+padding: 13px 15px;
+font-size: 17px;
+font-family: inherit;
+resize: none;
+background: var(–gray);
+color: var(–ink);
+outline: none;
+min-height: 80px;
+line-height: 1.6;
+transition: border-color 0.15s;
 }
-.translate-textarea:focus { border-color: var(--gold-dark); background: var(--white); }
+.translate-textarea:focus { border-color: var(–gold-dark); background: var(–white); }
 .translate-quick {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin-top: 12px;
+display: flex;
+flex-wrap: wrap;
+gap: 7px;
+margin-top: 12px;
 }
 .translate-quick-btn {
-  padding: 7px 13px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  border: 1.5px solid var(--gray-mid);
-  background: var(--white);
-  color: var(--ink-soft);
-  font-family: inherit;
-  transition: all 0.15s;
+padding: 7px 13px;
+border-radius: 20px;
+font-size: 13px;
+font-weight: 600;
+cursor: pointer;
+border: 1.5px solid var(–gray-mid);
+background: var(–white);
+color: var(–ink-soft);
+font-family: inherit;
+transition: all 0.15s;
 }
-.translate-quick-btn:active { background: var(--gold-pale); border-color: var(--gold); }
+.translate-quick-btn:active { background: var(–gold-pale); border-color: var(–gold); }
 .translate-btn {
-  width: 100%;
-  margin-top: 14px;
-  padding: 17px;
-  border-radius: 16px;
-  background: var(--gold);
-  border: none;
-  font-size: 17px;
-  font-weight: 700;
-  color: var(--ink);
-  cursor: pointer;
-  font-family: inherit;
-  transition: all 0.15s;
-  letter-spacing: -0.2px;
+width: 100%;
+margin-top: 14px;
+padding: 17px;
+border-radius: 16px;
+background: var(–gold);
+border: none;
+font-size: 17px;
+font-weight: 700;
+color: var(–ink);
+cursor: pointer;
+font-family: inherit;
+transition: all 0.15s;
+letter-spacing: -0.2px;
 }
-.translate-btn:active { background: var(--gold-dark); transform: scale(0.99); }
-.translate-btn:disabled { background: var(--gold-light); color: var(--gold-dark); cursor: not-allowed; }
+.translate-btn:active { background: var(–gold-dark); transform: scale(0.99); }
+.translate-btn:disabled { background: var(–gold-light); color: var(–gold-dark); cursor: not-allowed; }
 .translate-result-card {
-  background: var(--white);
-  border-radius: 20px;
-  padding: 18px;
-  border: 1px solid var(--gray-mid);
-  display: none;
+background: var(–white);
+border-radius: 20px;
+padding: 18px;
+border: 1px solid var(–gray-mid);
+display: none;
 }
 .translate-result-card.visible { display: block; }
 .result-lang-badge {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: var(--gold-pale);
-  border: 1px solid var(--gold-light);
-  border-radius: 8px;
-  padding: 5px 11px;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--ink-soft);
-  margin-bottom: 12px;
+display: inline-flex; align-items: center; gap: 6px;
+background: var(–gold-pale);
+border: 1px solid var(–gold-light);
+border-radius: 8px;
+padding: 5px 11px;
+font-size: 12px;
+font-weight: 700;
+color: var(–ink-soft);
+margin-bottom: 12px;
 }
 .result-translated {
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--ink);
-  line-height: 1.5;
-  margin-bottom: 12px;
-  word-break: keep-all;
-  letter-spacing: -0.5px;
+font-size: 28px;
+font-weight: 700;
+color: var(–ink);
+line-height: 1.5;
+margin-bottom: 12px;
+word-break: keep-all;
+letter-spacing: -0.5px;
 }
-.result-divider { border: none; border-top: 1px solid var(--gray); margin: 12px 0; }
+.result-divider { border: none; border-top: 1px solid var(–gray); margin: 12px 0; }
 .result-pronunciation-label {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--gray-dark);
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  margin-bottom: 6px;
+font-size: 11px;
+font-weight: 700;
+color: var(–gray-dark);
+letter-spacing: 1.5px;
+text-transform: uppercase;
+margin-bottom: 6px;
 }
 .result-pronunciation {
-  font-size: 18px;
-  color: var(--ink-soft);
-  line-height: 1.6;
-  font-style: italic;
+font-size: 18px;
+color: var(–ink-soft);
+line-height: 1.6;
+font-style: italic;
 }
 .copy-btn {
-  display: inline-flex; align-items: center; gap: 6px;
-  margin-top: 12px;
-  padding: 8px 14px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 700;
-  border: 1.5px solid var(--gray-mid);
-  background: var(--white);
-  color: var(--ink-soft);
-  cursor: pointer;
-  font-family: inherit;
-  transition: all 0.15s;
+display: inline-flex; align-items: center; gap: 6px;
+margin-top: 12px;
+padding: 8px 14px;
+border-radius: 20px;
+font-size: 13px;
+font-weight: 700;
+border: 1.5px solid var(–gray-mid);
+background: var(–white);
+color: var(–ink-soft);
+cursor: pointer;
+font-family: inherit;
+transition: all 0.15s;
 }
-.copy-btn:active { background: var(--gold-pale); }
+.copy-btn:active { background: var(–gold-pale); }
 .alt-label {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--gray-dark);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin: 12px 0 8px;
+font-size: 11px;
+font-weight: 700;
+color: var(–gray-dark);
+letter-spacing: 1px;
+text-transform: uppercase;
+margin: 12px 0 8px;
 }
 .alt-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: var(--gray);
-  border: 1px solid var(--gray-mid);
-  border-radius: 12px;
-  padding: 10px 14px;
-  margin-bottom: 7px;
-  font-size: 15px;
-  color: var(--ink);
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.15s;
+display: flex;
+justify-content: space-between;
+align-items: center;
+background: var(–gray);
+border: 1px solid var(–gray-mid);
+border-radius: 12px;
+padding: 10px 14px;
+margin-bottom: 7px;
+font-size: 15px;
+color: var(–ink);
+cursor: pointer;
+font-weight: 600;
+transition: all 0.15s;
 }
-.alt-item:active { background: var(--gold-pale); }
+.alt-item:active { background: var(–gold-pale); }
 .alt-copy {
-  font-size: 11px;
-  color: var(--gold-dark);
-  font-weight: 700;
-  border: 1px solid var(--gold);
-  border-radius: 10px;
-  padding: 2px 8px;
-  flex-shrink: 0;
+font-size: 11px;
+color: var(–gold-dark);
+font-weight: 700;
+border: 1px solid var(–gold);
+border-radius: 10px;
+padding: 2px 8px;
+flex-shrink: 0;
 }
 .translate-history {
-  background: var(--white);
-  border-radius: 20px;
-  padding: 16px;
-  border: 1px solid var(--gray-mid);
+background: var(–white);
+border-radius: 20px;
+padding: 16px;
+border: 1px solid var(–gray-mid);
 }
 .history-title {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--gray-dark);
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  margin-bottom: 12px;
+font-size: 11px;
+font-weight: 700;
+color: var(–gray-dark);
+letter-spacing: 1.5px;
+text-transform: uppercase;
+margin-bottom: 12px;
 }
 .history-item {
-  padding: 10px 0;
-  border-bottom: 1px solid var(--gray);
-  cursor: pointer;
+padding: 10px 0;
+border-bottom: 1px solid var(–gray);
+cursor: pointer;
 }
 .history-item:last-child { border-bottom: none; }
-.history-orig { font-size: 13px; color: var(--gray-dark); }
-.history-trans { font-size: 15px; font-weight: 700; color: var(--ink); margin-top: 2px; }
-.history-pron { font-size: 12px; color: var(--gray-dark); font-style: italic; margin-top: 1px; }
-.empty-history { font-size: 13px; color: var(--gray-mid); text-align: center; padding: 14px 0; }
+.history-orig { font-size: 13px; color: var(–gray-dark); }
+.history-trans { font-size: 15px; font-weight: 700; color: var(–ink); margin-top: 2px; }
+.history-pron { font-size: 12px; color: var(–gray-dark); font-style: italic; margin-top: 1px; }
+.empty-history { font-size: 13px; color: var(–gray-mid); text-align: center; padding: 14px 0; }
 
 /* ── AI 가이드 ── */
 .agent-fullscreen {
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  top: calc(var(--safe-top) + 58px);
-  left: 0; right: 0; bottom: 0;
+display: flex;
+flex-direction: column;
+position: fixed;
+top: calc(var(–safe-top) + 58px);
+left: 0; right: 0; bottom: 0;
 }
 .chat-messages {
-  flex: 1;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  padding: 16px;
-  background: var(--gray);
-  -webkit-overflow-scrolling: touch;
+flex: 1;
+overflow-y: auto;
+display: flex;
+flex-direction: column;
+gap: 14px;
+padding: 16px;
+background: var(–gray);
+-webkit-overflow-scrolling: touch;
 }
 .msg { display: flex; gap: 10px; align-items: flex-end; }
 .msg.user { flex-direction: row-reverse; }
 .msg-avatar {
-  width: 32px; height: 32px;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 16px;
-  flex-shrink: 0;
-  background: var(--gold);
+width: 32px; height: 32px;
+border-radius: 50%;
+display: flex; align-items: center; justify-content: center;
+font-size: 16px;
+flex-shrink: 0;
+background: var(–gold);
 }
-.msg.user .msg-avatar { background: var(--ink); }
+.msg.user .msg-avatar { background: var(–ink); }
 .msg-bubble {
-  max-width: 85%;
-  padding: 13px 16px;
-  border-radius: 20px;
-  font-size: 16px;
-  line-height: 1.7;
-  white-space: pre-wrap;
-  word-break: keep-all;
+max-width: 85%;
+padding: 13px 16px;
+border-radius: 20px;
+font-size: 16px;
+line-height: 1.7;
+white-space: pre-wrap;
+word-break: keep-all;
 }
 .msg.ai .msg-bubble {
-  background: var(--white);
-  color: var(--ink);
-  border-radius: 4px 20px 20px 20px;
-  border: 1px solid var(--gray-mid);
+background: var(–white);
+color: var(–ink);
+border-radius: 4px 20px 20px 20px;
+border: 1px solid var(–gray-mid);
 }
 .msg.user .msg-bubble {
-  background: var(--gold);
-  color: var(--ink);
-  border-radius: 20px 4px 20px 20px;
-  font-weight: 500;
+background: var(–gold);
+color: var(–ink);
+border-radius: 20px 4px 20px 20px;
+font-weight: 500;
 }
 .typing {
-  display: flex; gap: 5px; align-items: center;
-  padding: 14px 16px;
+display: flex; gap: 5px; align-items: center;
+padding: 14px 16px;
 }
 .typing-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: var(--gray-dark);
-  animation: bounce 1.2s infinite;
+width: 8px; height: 8px;
+border-radius: 50%;
+background: var(–gray-dark);
+animation: bounce 1.2s infinite;
 }
 .typing-dot:nth-child(2) { animation-delay: 0.15s; }
 .typing-dot:nth-child(3) { animation-delay: 0.3s; }
 @keyframes bounce {
-  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-  30% { transform: translateY(-6px); opacity: 1; }
+0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+30% { transform: translateY(-6px); opacity: 1; }
 }
 .quick-scroll {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding: 10px 16px;
-  flex-shrink: 0;
-  background: var(--white);
-  border-top: 1px solid var(--gray-mid);
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+display: flex;
+gap: 8px;
+overflow-x: auto;
+padding: 10px 16px;
+flex-shrink: 0;
+background: var(–white);
+border-top: 1px solid var(–gray-mid);
+-webkit-overflow-scrolling: touch;
+scrollbar-width: none;
 }
 .quick-scroll::-webkit-scrollbar { display: none; }
 .agent-quick-btn {
-  white-space: nowrap;
-  padding: 9px 16px;
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  border: 1.5px solid var(--gray-mid);
-  background: var(--white);
-  color: var(--ink-soft);
-  font-family: inherit;
-  transition: all 0.15s;
-  flex-shrink: 0;
+white-space: nowrap;
+padding: 9px 16px;
+border-radius: 20px;
+font-size: 14px;
+font-weight: 600;
+cursor: pointer;
+border: 1.5px solid var(–gray-mid);
+background: var(–white);
+color: var(–ink-soft);
+font-family: inherit;
+transition: all 0.15s;
+flex-shrink: 0;
 }
-.agent-quick-btn:active { background: var(--gold-pale); border-color: var(--gold); }
+.agent-quick-btn:active { background: var(–gold-pale); border-color: var(–gold); }
 .chat-input-area {
-  display: flex;
-  gap: 10px;
-  align-items: flex-end;
-  padding: 12px 16px;
-  padding-bottom: calc(12px + var(--safe-bot));
-  background: var(--white);
-  border-top: 1px solid var(--gray-mid);
-  flex-shrink: 0;
+display: flex;
+gap: 10px;
+align-items: flex-end;
+padding: 12px 16px;
+padding-bottom: calc(12px + var(–safe-bot));
+background: var(–white);
+border-top: 1px solid var(–gray-mid);
+flex-shrink: 0;
 }
 .chat-input {
-  flex: 1;
-  border: 1.5px solid var(--gray-mid);
-  border-radius: 16px;
-  padding: 13px 16px;
-  font-size: 16px;
-  font-family: inherit;
-  resize: none;
-  background: var(--gray);
-  color: var(--ink);
-  outline: none;
-  min-height: 50px;
-  max-height: 120px;
-  line-height: 1.5;
-  transition: border-color 0.15s;
+flex: 1;
+border: 1.5px solid var(–gray-mid);
+border-radius: 16px;
+padding: 13px 16px;
+font-size: 16px;
+font-family: inherit;
+resize: none;
+background: var(–gray);
+color: var(–ink);
+outline: none;
+min-height: 50px;
+max-height: 120px;
+line-height: 1.5;
+transition: border-color 0.15s;
 }
-.chat-input:focus { border-color: var(--gold-dark); background: var(--white); }
+.chat-input:focus { border-color: var(–gold-dark); background: var(–white); }
 .chat-send {
-  width: 50px; height: 50px;
-  border-radius: 16px;
-  background: var(--gold);
-  border: none;
-  cursor: pointer;
-  font-size: 20px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  transition: all 0.15s;
-  color: var(--ink);
+width: 50px; height: 50px;
+border-radius: 16px;
+background: var(–gold);
+border: none;
+cursor: pointer;
+font-size: 20px;
+display: flex; align-items: center; justify-content: center;
+flex-shrink: 0;
+transition: all 0.15s;
+color: var(–ink);
 }
-.chat-send:active { background: var(--gold-dark); transform: scale(0.95); }
-.chat-send:disabled { background: var(--gold-light); cursor: not-allowed; }
+.chat-send:active { background: var(–gold-dark); transform: scale(0.95); }
+.chat-send:disabled { background: var(–gold-light); cursor: not-allowed; }
 
 .tab-content { display: none; }
 .tab-content.active { display: block; }
 
 /* ── 맛집 지도 ── */
 #subpage-map {
-  display: none;
-  flex-direction: column;
-  height: 100dvh;
-  overflow: hidden;
+display: none;
+flex-direction: column;
+height: 100dvh;
+overflow: hidden;
 }
 #subpage-map.active { display: flex; }
 
 .map-filter-bar {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding: 10px 16px;
-  background: var(--white);
-  border-bottom: 1px solid var(--gray-mid);
-  flex-shrink: 0;
-  scrollbar-width: none;
+display: flex;
+gap: 8px;
+overflow-x: auto;
+padding: 10px 16px;
+background: var(–white);
+border-bottom: 1px solid var(–gray-mid);
+flex-shrink: 0;
+scrollbar-width: none;
 }
 .map-filter-bar::-webkit-scrollbar { display: none; }
 .map-filter-btn {
-  white-space: nowrap;
-  padding: 7px 14px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  border: 1.5px solid var(--gray-mid);
-  background: var(--white);
-  color: var(--gray-dark);
-  font-family: inherit;
-  transition: all 0.15s;
-  flex-shrink: 0;
+white-space: nowrap;
+padding: 7px 14px;
+border-radius: 20px;
+font-size: 13px;
+font-weight: 600;
+cursor: pointer;
+border: 1.5px solid var(–gray-mid);
+background: var(–white);
+color: var(–gray-dark);
+font-family: inherit;
+transition: all 0.15s;
+flex-shrink: 0;
 }
 .map-filter-btn.active {
-  background: #34A853;
-  border-color: #2E9448;
-  color: white;
+background: #34A853;
+border-color: #2E9448;
+color: white;
 }
 .rest-list {
-  flex: 1;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  background: var(--gray);
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+flex: 1;
+overflow-y: auto;
+-webkit-overflow-scrolling: touch;
+background: var(–gray);
+padding: 12px;
+display: flex;
+flex-direction: column;
+gap: 10px;
 }
 .rest-card {
-  background: var(--white);
-  border-radius: 16px;
-  padding: 14px 16px;
-  border: 1px solid var(--gray-mid);
-  cursor: pointer;
-  transition: all 0.15s;
-  display: flex;
-  align-items: center;
-  gap: 12px;
+background: var(–white);
+border-radius: 16px;
+padding: 14px 16px;
+border: 1px solid var(–gray-mid);
+cursor: pointer;
+transition: all 0.15s;
+display: flex;
+align-items: center;
+gap: 12px;
 }
 .rest-rank {
-  width: 26px; height: 26px;
-  background: var(--gold-pale);
-  border: 1px solid var(--gold-light);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 12px; font-weight: 700; color: var(--ink-soft);
-  flex-shrink: 0;
+width: 26px; height: 26px;
+background: var(–gold-pale);
+border: 1px solid var(–gold-light);
+border-radius: 50%;
+display: flex; align-items: center; justify-content: center;
+font-size: 12px; font-weight: 700; color: var(–ink-soft);
+flex-shrink: 0;
 }
-.rest-card:active { background: var(--gold-pale); }
+.rest-card:active { background: var(–gold-pale); }
 .rest-card-left { flex: 1; min-width: 0; }
-.rest-card-name { font-size: 16px; font-weight: 700; color: var(--ink); letter-spacing: -0.2px; }
-.rest-card-city { font-size: 12px; color: var(--gray-dark); margin-top: 2px; }
+.rest-card-name { font-size: 16px; font-weight: 700; color: var(–ink); letter-spacing: -0.2px; }
+.rest-card-city { font-size: 12px; color: var(–gray-dark); margin-top: 2px; }
 .rest-card-rating {
-  display: flex; align-items: center; gap: 5px;
-  margin-top: 6px;
+display: flex; align-items: center; gap: 5px;
+margin-top: 6px;
 }
 .rest-rating-stars { font-size: 13px; color: #F5A623; font-weight: 700; }
-.rest-rating-count { font-size: 12px; color: var(--gray-dark); }
+.rest-rating-count { font-size: 12px; color: var(–gray-dark); }
 .rest-card-badge {
-  flex-shrink: 0;
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 11px;
-  font-weight: 700;
+flex-shrink: 0;
+padding: 4px 10px;
+border-radius: 20px;
+font-size: 11px;
+font-weight: 700;
 }
-.badge-confirmed { background: var(--gold); color: var(--ink); }
+.badge-confirmed { background: var(–gold); color: var(–ink); }
 .badge-recommend { background: #E8F5E9; color: #2E7D32; border: 1px solid #A5D6A7; }
-.rest-arrow { color: var(--gray-mid); font-size: 18px; flex-shrink: 0; }
+.rest-arrow { color: var(–gray-mid); font-size: 18px; flex-shrink: 0; }
 
 /* 팝업 */
 .rest-popup {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-  z-index: 1000;
-  display: flex;
-  align-items: flex-end;
-  padding-bottom: var(--safe-bot);
+position: fixed;
+inset: 0;
+background: rgba(0,0,0,0.5);
+z-index: 1000;
+display: flex;
+align-items: flex-end;
+padding-bottom: var(–safe-bot);
 }
 .rest-popup-inner {
-  background: var(--white);
-  border-radius: 24px 24px 0 0;
-  padding: 24px 20px calc(20px + var(--safe-bot));
-  width: 100%;
-  position: relative;
+background: var(–white);
+border-radius: 24px 24px 0 0;
+padding: 24px 20px calc(20px + var(–safe-bot));
+width: 100%;
+position: relative;
 }
 .popup-close {
-  position: absolute;
-  top: 16px; right: 16px;
-  width: 32px; height: 32px;
-  border-radius: 50%;
-  background: var(--gray);
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  color: var(--gray-dark);
+position: absolute;
+top: 16px; right: 16px;
+width: 32px; height: 32px;
+border-radius: 50%;
+background: var(–gray);
+border: none;
+font-size: 16px;
+cursor: pointer;
+display: flex; align-items: center; justify-content: center;
+color: var(–gray-dark);
 }
-.popup-name { font-size: 22px; font-weight: 700; color: var(--ink); margin-bottom: 6px; letter-spacing: -0.3px; }
-.popup-meta { font-size: 14px; color: var(--gray-dark); margin-bottom: 12px; }
-.popup-menu { font-size: 13px; color: var(--gray-dark); margin-bottom: 8px; line-height: 1.6; }
-.popup-note { font-size: 13px; color: var(--gray-dark); margin-bottom: 16px; line-height: 1.5; }
+.popup-name { font-size: 22px; font-weight: 700; color: var(–ink); margin-bottom: 6px; letter-spacing: -0.3px; }
+.popup-meta { font-size: 14px; color: var(–gray-dark); margin-bottom: 12px; }
+.popup-menu { font-size: 13px; color: var(–gray-dark); margin-bottom: 8px; line-height: 1.6; }
+.popup-note { font-size: 13px; color: var(–gray-dark); margin-bottom: 16px; line-height: 1.5; }
 .popup-map-link {
-  display: block;
-  text-align: center;
-  background: #34A853;
-  color: white;
-  font-size: 15px;
-  font-weight: 700;
-  padding: 14px;
-  border-radius: 14px;
-  text-decoration: none;
-  letter-spacing: -0.2px;
+display: block;
+text-align: center;
+background: #34A853;
+color: white;
+font-size: 15px;
+font-weight: 700;
+padding: 14px;
+border-radius: 14px;
+text-decoration: none;
+letter-spacing: -0.2px;
 }
+
+/* ── 내 티켓 ── */
+.ticket-list { display: flex; flex-direction: column; gap: 12px; }
+.ticket-card {
+background: var(–white);
+border-radius: 20px;
+overflow: hidden;
+border: 1px solid var(–gray-mid);
+}
+.ticket-header {
+display: flex;
+align-items: center;
+gap: 12px;
+padding: 14px 16px 10px;
+border-bottom: 1px solid var(–gray);
+}
+.ticket-icon-wrap {
+width: 42px; height: 42px;
+border-radius: 12px;
+background: var(–gray);
+display: flex; align-items: center; justify-content: center;
+font-size: 22px;
+flex-shrink: 0;
+}
+.tc-car .ticket-icon-wrap { background: #FFF0EE; }
+.tc-museum .ticket-icon-wrap { background: #EBF3FF; }
+.tc-sagrada .ticket-icon-wrap { background: #FFF8E6; }
+.tc-guell .ticket-icon-wrap { background: #E8F5E9; }
+.tc-montserrat .ticket-icon-wrap { background: #F3E8FF; }
+.tc-train .ticket-icon-wrap { background: #E3F2FD; }
+.ticket-meta { flex: 1; min-width: 0; }
+.ticket-category { font-size: 11px; font-weight: 700; color: var(–gray-dark); letter-spacing: 0.5px; text-transform: uppercase; }
+.ticket-title { font-size: 15px; font-weight: 700; color: var(–ink); margin-top: 2px; letter-spacing: -0.2px; }
+.ticket-status {
+font-size: 11px; font-weight: 700;
+padding: 4px 9px; border-radius: 20px;
+flex-shrink: 0;
+}
+.ticket-status.confirmed { background: #E8F5E9; color: #2E7D32; border: 1px solid #A5D6A7; }
+.ticket-body { padding: 12px 16px; display: flex; flex-direction: column; gap: 7px; }
+.ticket-row { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; line-height: 1.5; }
+.tk-label { color: var(–gray-dark); min-width: 52px; flex-shrink: 0; font-weight: 500; }
+.tk-val { color: var(–ink); font-weight: 500; }
+.tk-code { font-family: monospace; font-size: 14px; color: #E8472D; font-weight: 700; letter-spacing: 0.5px; }
+.ticket-note {
+font-size: 12px;
+color: #C04A00;
+background: #FFF0E6;
+border: 1px solid #FFD0B0;
+border-radius: 8px;
+padding: 6px 10px;
+margin-top: 4px;
+}
+.ticket-link {
+display: block;
+text-align: center;
+padding: 11px;
+background: var(–gray);
+color: var(–ink-soft);
+font-size: 13px;
+font-weight: 700;
+text-decoration: none;
+border-top: 1px solid var(–gray-mid);
+transition: background 0.15s;
+}
+.ticket-link:active { background: var(–gold-pale); }
 </style>
+
 </head>
 <body>
 
 <!-- ── 홈 화면 ── -->
+
 <div id="home-screen" class="home-screen">
   <div class="home-hero">
     <div class="hero-eyebrow">✈ Family Travel 2026</div>
@@ -943,10 +1013,16 @@ body {
       <div class="menu-label">맛집 지도</div>
       <div class="menu-desc">평점 4.7 이상</div>
     </button>
+    <button class="menu-card c-ticket" onclick="openPage('ticket')">
+      <div class="menu-icon">🎫</div>
+      <div class="menu-label">내 티켓</div>
+      <div class="menu-desc">예약 확인서 모음</div>
+    </button>
   </div>
 </div>
 
 <!-- ── 서브페이지 컨테이너 ── -->
+
 <div id="subpage-schedule" class="subpage">
   <div class="sub-header">
     <button class="back-btn" onclick="goHome()">← 홈</button>
@@ -954,8 +1030,6 @@ body {
   </div>
   <div class="sub-body">
     <div class="tab-content active" id="tab-schedule">
-      
-
 
   <div class="map-selector">
     <div class="map-selector-title">📍 지역별 지도 보기</div>
@@ -976,6 +1050,7 @@ body {
   </div>
 
   <!-- D1 -->
+
   <div class="day-card">
     <div class="day-header" onclick="toggleDay(this)">
       <div class="day-num">D1</div>
@@ -999,6 +1074,7 @@ body {
   </div>
 
   <!-- D2 -->
+
   <div class="day-card">
     <div class="day-header" onclick="toggleDay(this)">
       <div class="day-num">D2</div>
@@ -1072,6 +1148,7 @@ body {
   </div>
 
   <!-- D3 -->
+
   <div class="day-card">
     <div class="day-header" onclick="toggleDay(this)">
       <div class="day-num">D3</div>
@@ -1128,6 +1205,7 @@ body {
   </div>
 
   <!-- D4 -->
+
   <div class="day-card">
     <div class="day-header" onclick="toggleDay(this)">
       <div class="day-num">D4</div>
@@ -1221,6 +1299,7 @@ body {
   </div>
 
   <!-- D5 -->
+
   <div class="day-card">
     <div class="day-header" onclick="toggleDay(this)">
       <div class="day-num">D5</div>
@@ -1270,6 +1349,7 @@ body {
   </div>
 
   <!-- D6 -->
+
   <div class="day-card">
     <div class="day-header" onclick="toggleDay(this)">
       <div class="day-num">D6</div>
@@ -1326,6 +1406,7 @@ body {
   </div>
 
   <!-- D7 -->
+
   <div class="day-card">
     <div class="day-header" onclick="toggleDay(this)">
       <div class="day-num">D7</div>
@@ -1370,6 +1451,7 @@ body {
   </div>
 
   <!-- D8 -->
+
   <div class="day-card">
     <div class="day-header" onclick="toggleDay(this)">
       <div class="day-num">D8</div>
@@ -1414,6 +1496,7 @@ body {
   </div>
 
   <!-- D9 -->
+
   <div class="day-card">
     <div class="day-header" onclick="toggleDay(this)">
       <div class="day-num">D9</div>
@@ -1460,6 +1543,7 @@ body {
   </div>
 
   <!-- D10 -->
+
   <div class="day-card">
     <div class="day-header" onclick="toggleDay(this)">
       <div class="day-num">D10</div>
@@ -1499,6 +1583,7 @@ body {
   </div>
 
   <!-- D11 -->
+
   <div class="day-card">
     <div class="day-header" onclick="toggleDay(this)">
       <div class="day-num">D11</div>
@@ -1536,9 +1621,8 @@ body {
     </div>
   </div>
 
-
-
 <!-- ===== 비용 탭 ===== -->
+
 <div class="tab-content" id="tab-cost">
   <div class="cost-summary">
     <div class="cost-title">💰 예산 요약</div>
@@ -1578,6 +1662,7 @@ body {
 </div>
 
 <!-- ===== 식당 탭 ===== -->
+
 <div class="tab-content" id="tab-restaurant">
   <div class="section-label">✅ 확정 식당</div>
   <div class="rest-card"><div class="rest-header"><div><div class="rest-name">Restaurant Fou de Fafa</div><div class="rest-city">📍 아비뇽 · 5/4 저녁</div></div><div class="rest-type type-confirmed">확정</div></div><div class="rest-menu">프랑스 가정식 3코스</div><div class="rest-note">아비뇽에서 가장 친절하고 맛있는 식당으로 유명</div><a class="map-link" href="https://maps.google.com/?q=Restaurant+Fou+de+Fafa+Avignon+France" target="_blank">🗺️ 구글 맵으로 보기</a></div>
@@ -1597,8 +1682,10 @@ body {
   <div class="rest-card"><div class="rest-header"><div><div class="rest-name">Grenache</div><div class="rest-city">📍 액상프로방스</div></div><div class="rest-type type-candidate">후보</div></div><div class="rest-menu">프로방스 현지 요리</div><a class="map-link" href="https://maps.google.com/?q=Grenache+Restaurant+Aix-en-Provence+France" target="_blank">🗺️ 구글 맵으로 보기</a></div>
 </div>
 
+```
+</div>
+```
 
-    </div>
   </div>
 </div>
 
@@ -1609,66 +1696,68 @@ body {
   </div>
   <div class="sub-body">
     <div class="tab-content active" id="tab-translate">
-      
 
   <div class="translate-wrap">
 
-    <!-- 현재 언어 상태 -->
-    <div class="lang-status">
-      <div class="lang-status-row">
-        <div class="lang-badge">
-          <div class="lang-flag" id="t-flag">🇪🇸</div>
-          <div>
-            <div class="lang-name" id="t-lang-name">스페인어로 번역 중</div>
-            <div class="lang-date" id="t-lang-date">4/30–5/3 바르셀로나 구간 · 자동 설정</div>
-          </div>
-        </div>
-        <div class="lang-toggle-wrap">
-          <button class="lang-toggle-btn active-lang" id="btn-es" onclick="setLang('es')">🇪🇸 스페인어</button>
-          <button class="lang-toggle-btn" id="btn-fr" onclick="setLang('fr')">🇫🇷 프랑스어</button>
-        </div>
+```
+<!-- 현재 언어 상태 -->
+<div class="lang-status">
+  <div class="lang-status-row">
+    <div class="lang-badge">
+      <div class="lang-flag" id="t-flag">🇪🇸</div>
+      <div>
+        <div class="lang-name" id="t-lang-name">스페인어로 번역 중</div>
+        <div class="lang-date" id="t-lang-date">4/30–5/3 바르셀로나 구간 · 자동 설정</div>
       </div>
     </div>
-
-    <!-- 입력 -->
-    <div class="translate-input-card">
-      <div class="translate-label">🇰🇷 한국어 입력</div>
-      <textarea class="translate-textarea" id="t-input" placeholder="번역할 한국어 문장을 입력하세요&#10;예: 화장실이 어디에 있나요?" rows="3"></textarea>
-      <div class="translate-quick">
-        <button class="translate-quick-btn" onclick="setTranslateInput('화장실이 어디에 있나요?')">화장실 어디?</button>
-        <button class="translate-quick-btn" onclick="setTranslateInput('얼마예요?')">얼마예요?</button>
-        <button class="translate-quick-btn" onclick="setTranslateInput('감사합니다')">감사합니다</button>
-        <button class="translate-quick-btn" onclick="setTranslateInput('메뉴판 주세요')">메뉴판 주세요</button>
-        <button class="translate-quick-btn" onclick="setTranslateInput('영어 할 줄 아세요?')">영어 되세요?</button>
-        <button class="translate-quick-btn" onclick="setTranslateInput('이것을 추천해 주세요')">추천해 주세요</button>
-        <button class="translate-quick-btn" onclick="setTranslateInput('사진 찍어드릴까요?')">사진 찍어드릴까요?</button>
-        <button class="translate-quick-btn" onclick="setTranslateInput('병원이 어디에 있나요?')">병원 어디?</button>
-      </div>
-      <button class="translate-btn" id="t-btn" onclick="doTranslate()">번역하기 ✨</button>
+    <div class="lang-toggle-wrap">
+      <button class="lang-toggle-btn active-lang" id="btn-es" onclick="setLang('es')">🇪🇸 스페인어</button>
+      <button class="lang-toggle-btn" id="btn-fr" onclick="setLang('fr')">🇫🇷 프랑스어</button>
     </div>
+  </div>
+</div>
 
-    <!-- 결과 -->
-    <div class="translate-result-card" id="t-result-card">
-      <div class="result-lang-badge" id="t-result-badge">🇪🇸 스페인어</div>
-      <div class="result-translated" id="t-result-text"></div>
-      <button class="copy-btn" onclick="copyResult()">📋 복사하기</button>
-      <hr class="result-divider">
-      <div class="result-pronunciation-label">🔊 한국어 발음 표기</div>
-      <div class="result-pronunciation" id="t-result-pron"></div>
-      <div id="t-alternatives" style="display:none; margin-top:12px;"></div>
-    </div>
+<!-- 입력 -->
+<div class="translate-input-card">
+  <div class="translate-label">🇰🇷 한국어 입력</div>
+  <textarea class="translate-textarea" id="t-input" placeholder="번역할 한국어 문장을 입력하세요&#10;예: 화장실이 어디에 있나요?" rows="3"></textarea>
+  <div class="translate-quick">
+    <button class="translate-quick-btn" onclick="setTranslateInput('화장실이 어디에 있나요?')">화장실 어디?</button>
+    <button class="translate-quick-btn" onclick="setTranslateInput('얼마예요?')">얼마예요?</button>
+    <button class="translate-quick-btn" onclick="setTranslateInput('감사합니다')">감사합니다</button>
+    <button class="translate-quick-btn" onclick="setTranslateInput('메뉴판 주세요')">메뉴판 주세요</button>
+    <button class="translate-quick-btn" onclick="setTranslateInput('영어 할 줄 아세요?')">영어 되세요?</button>
+    <button class="translate-quick-btn" onclick="setTranslateInput('이것을 추천해 주세요')">추천해 주세요</button>
+    <button class="translate-quick-btn" onclick="setTranslateInput('사진 찍어드릴까요?')">사진 찍어드릴까요?</button>
+    <button class="translate-quick-btn" onclick="setTranslateInput('병원이 어디에 있나요?')">병원 어디?</button>
+  </div>
+  <button class="translate-btn" id="t-btn" onclick="doTranslate()">번역하기 ✨</button>
+</div>
 
-    <!-- 번역 히스토리 -->
-    <div class="translate-history">
-      <div class="history-title">🕐 최근 번역 기록</div>
-      <div id="t-history-list"><div class="empty-history">아직 번역 기록이 없어요</div></div>
-    </div>
+<!-- 결과 -->
+<div class="translate-result-card" id="t-result-card">
+  <div class="result-lang-badge" id="t-result-badge">🇪🇸 스페인어</div>
+  <div class="result-translated" id="t-result-text"></div>
+  <button class="copy-btn" onclick="copyResult()">📋 복사하기</button>
+  <hr class="result-divider">
+  <div class="result-pronunciation-label">🔊 한국어 발음 표기</div>
+  <div class="result-pronunciation" id="t-result-pron"></div>
+  <div id="t-alternatives" style="display:none; margin-top:12px;"></div>
+</div>
+
+<!-- 번역 히스토리 -->
+<div class="translate-history">
+  <div class="history-title">🕐 최근 번역 기록</div>
+  <div id="t-history-list"><div class="empty-history">아직 번역 기록이 없어요</div></div>
+</div>
+```
 
   </div>
 
+```
+</div>
+```
 
-
-    </div>
   </div>
 </div>
 
@@ -1677,7 +1766,6 @@ body {
     <button class="back-btn" onclick="goHome()">← 홈</button>
     <div class="sub-title">AI 여행 가이드</div>
   </div>
-  
 
   <div class="agent-fullscreen">
     <div class="chat-messages" id="chat-messages">
@@ -1688,32 +1776,186 @@ body {
 이번 여행에서 방문하시는 모든 곳의 역사, 건축, 숨겨진 이야기를 상세하게 안내해 드리겠습니다.
 
 사그라다 파밀리아, 몬세라트, 아비뇽 교황청, 에즈 마을 등 궁금한 곳을 편하게 물어보세요.</div>
-      </div>
-    </div>
-    <div class="quick-scroll">
-      <button class="agent-quick-btn" onclick="sendQuick('사그라다 파밀리아의 역사와 건축 스토리를 자세히 설명해줘')">사그라다 파밀리아</button>
-      <button class="agent-quick-btn" onclick="sendQuick('구엘 공원의 역사와 볼거리를 자세히 설명해줘')">구엘 공원</button>
-      <button class="agent-quick-btn" onclick="sendQuick('몬세라트 수도원의 역사와 검은 성모상 스토리를 알려줘')">몬세라트</button>
-      <button class="agent-quick-btn" onclick="sendQuick('아비뇽 교황청의 역사를 자세히 설명해줘')">아비뇽 교황청</button>
-      <button class="agent-quick-btn" onclick="sendQuick('에즈 마을의 역사와 특징을 설명해줘')">에즈 마을</button>
-      <button class="agent-quick-btn" onclick="sendQuick('니스 올드타운의 볼거리와 역사를 설명해줘')">니스 올드타운</button>
-      <button class="agent-quick-btn" onclick="sendQuick('액상프로방스와 화가 세잔의 이야기를 들려줘')">세잔의 액상프로방스</button>
-      <button class="agent-quick-btn" onclick="sendQuick('바르셀로나 고딕지구의 역사를 설명해줘')">바르셀로나 고딕지구</button>
-      <button class="agent-quick-btn" onclick="sendQuick('가우디는 어떤 건축가야? 생애와 작품을 설명해줘')">가우디 이야기</button>
-      <button class="agent-quick-btn" onclick="sendQuick('남프랑스 프로방스 지역의 특징과 매력을 설명해줘')">프로방스 소개</button>
-    </div>
-    <div class="chat-input-area">
-      <textarea class="chat-input" id="chat-input" placeholder="무엇이든 물어보세요..." rows="1"
-        onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
-      <button class="chat-send" id="send-btn" onclick="sendMessage()">➤</button>
-    </div>
+</div>
+</div>
+<div class="quick-scroll">
+<button class="agent-quick-btn" onclick="sendQuick('사그라다 파밀리아의 역사와 건축 스토리를 자세히 설명해줘')">사그라다 파밀리아</button>
+<button class="agent-quick-btn" onclick="sendQuick('구엘 공원의 역사와 볼거리를 자세히 설명해줘')">구엘 공원</button>
+<button class="agent-quick-btn" onclick="sendQuick('몬세라트 수도원의 역사와 검은 성모상 스토리를 알려줘')">몬세라트</button>
+<button class="agent-quick-btn" onclick="sendQuick('아비뇽 교황청의 역사를 자세히 설명해줘')">아비뇽 교황청</button>
+<button class="agent-quick-btn" onclick="sendQuick('에즈 마을의 역사와 특징을 설명해줘')">에즈 마을</button>
+<button class="agent-quick-btn" onclick="sendQuick('니스 올드타운의 볼거리와 역사를 설명해줘')">니스 올드타운</button>
+<button class="agent-quick-btn" onclick="sendQuick('액상프로방스와 화가 세잔의 이야기를 들려줘')">세잔의 액상프로방스</button>
+<button class="agent-quick-btn" onclick="sendQuick('바르셀로나 고딕지구의 역사를 설명해줘')">바르셀로나 고딕지구</button>
+<button class="agent-quick-btn" onclick="sendQuick('가우디는 어떤 건축가야? 생애와 작품을 설명해줘')">가우디 이야기</button>
+<button class="agent-quick-btn" onclick="sendQuick('남프랑스 프로방스 지역의 특징과 매력을 설명해줘')">프로방스 소개</button>
+</div>
+<div class="chat-input-area">
+<textarea class="chat-input" id="chat-input" placeholder="무엇이든 물어보세요..." rows="1"
+onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+<button class="chat-send" id="send-btn" onclick="sendMessage()">➤</button>
+</div>
+
   </div>
-
-
 
 </div>
 
+<!-- ── 내 티켓 서브페이지 ── -->
+
+<div id="subpage-ticket" class="subpage">
+  <div class="sub-header">
+    <button class="back-btn" onclick="goHome()">← 홈</button>
+    <div class="sub-title">내 티켓</div>
+  </div>
+  <div class="sub-body">
+    <div class="ticket-list">
+
+```
+  <!-- 렌터카 -->
+  <div class="ticket-card tc-car">
+    <div class="ticket-header">
+      <div class="ticket-icon-wrap">🚗</div>
+      <div class="ticket-meta">
+        <div class="ticket-category">렌터카</div>
+        <div class="ticket-title">Hertz · Peugeot 3008</div>
+      </div>
+      <div class="ticket-status confirmed">확정</div>
+    </div>
+    <div class="ticket-body">
+      <div class="ticket-row"><span class="tk-label">픽업</span><span class="tk-val">5/5(화) 09:00 · 아비뇽 TGV역</span></div>
+      <div class="ticket-row"><span class="tk-label">반납</span><span class="tk-val">5/9(토) 15:00 · 니스 공항</span></div>
+      <div class="ticket-row"><span class="tk-label">예약번호</span><span class="tk-val tk-code">L5011167643</span></div>
+      <div class="ticket-row"><span class="tk-label">금액</span><span class="tk-val">€769.98 · 현지결제</span></div>
+    </div>
+    <a class="ticket-link" href="https://www.hertz.com" target="_blank">예약 확인 →</a>
+  </div>
+
+  <!-- 암스테르담 국립미술관 -->
+  <div class="ticket-card tc-museum">
+    <div class="ticket-header">
+      <div class="ticket-icon-wrap">🏛️</div>
+      <div class="ticket-meta">
+        <div class="ticket-category">박물관 입장권</div>
+        <div class="ticket-title">암스테르담 국립미술관</div>
+      </div>
+      <div class="ticket-status confirmed">확정</div>
+    </div>
+    <div class="ticket-body">
+      <div class="ticket-row"><span class="tk-label">날짜</span><span class="tk-val">5/1(금) 09:00~10:00</span></div>
+      <div class="ticket-row"><span class="tk-label">인원</span><span class="tk-val">성인 5인 · €25/인</span></div>
+      <div class="ticket-row"><span class="tk-label">예약자</span><span class="tk-val">Haehyun Yee</span></div>
+      <div class="ticket-row"><span class="tk-label">바코드</span><span class="tk-val tk-code">3289016677456~460</span></div>
+    </div>
+    <a class="ticket-link" href="https://www.rijksmuseum.nl" target="_blank">공식 사이트 →</a>
+  </div>
+
+  <!-- 사그라다 파밀리아 -->
+  <div class="ticket-card tc-sagrada">
+    <div class="ticket-header">
+      <div class="ticket-icon-wrap">⛪</div>
+      <div class="ticket-meta">
+        <div class="ticket-category">관광지 입장권</div>
+        <div class="ticket-title">사그라다 파밀리아</div>
+      </div>
+      <div class="ticket-status confirmed">확정</div>
+    </div>
+    <div class="ticket-body">
+      <div class="ticket-row"><span class="tk-label">날짜</span><span class="tk-val">5/2(토) 15:30 입장</span></div>
+      <div class="ticket-row"><span class="tk-label">인원</span><span class="tk-val">성인 5인 · €26/인</span></div>
+      <div class="ticket-row"><span class="tk-label">예약번호</span><span class="tk-val tk-code">95959739</span></div>
+      <div class="ticket-row"><span class="tk-label">입장</span><span class="tk-val">Carrer de la Marina (마리나 거리)</span></div>
+      <div class="ticket-note">⚠️ 입장 시 여권/신분증 필수 지참</div>
+    </div>
+    <a class="ticket-link" href="https://sagradafamilia.org" target="_blank">공식 사이트 →</a>
+  </div>
+
+  <!-- 구엘 공원 -->
+  <div class="ticket-card tc-guell">
+    <div class="ticket-header">
+      <div class="ticket-icon-wrap">🌿</div>
+      <div class="ticket-meta">
+        <div class="ticket-category">관광지 입장권</div>
+        <div class="ticket-title">구엘 공원</div>
+      </div>
+      <div class="ticket-status confirmed">확정</div>
+    </div>
+    <div class="ticket-body">
+      <div class="ticket-row"><span class="tk-label">날짜</span><span class="tk-val">5/2(토) 18:00 입장</span></div>
+      <div class="ticket-row"><span class="tk-label">인원</span><span class="tk-val">성인 5인 · €18/인</span></div>
+      <div class="ticket-row"><span class="tk-label">예약번호</span><span class="tk-val tk-code">8157047</span></div>
+      <div class="ticket-note">⚠️ 예약 시간 30분 이내 입장 · 재입장 불가</div>
+    </div>
+    <a class="ticket-link" href="https://parkguell.barcelona" target="_blank">공식 사이트 →</a>
+  </div>
+
+  <!-- 몬세라트 미사 -->
+  <div class="ticket-card tc-montserrat">
+    <div class="ticket-header">
+      <div class="ticket-icon-wrap">⛰️</div>
+      <div class="ticket-meta">
+        <div class="ticket-category">미사 예약</div>
+        <div class="ticket-title">몬세라트 미사 (Missa Conventual)</div>
+      </div>
+      <div class="ticket-status confirmed">확정</div>
+    </div>
+    <div class="ticket-body">
+      <div class="ticket-row"><span class="tk-label">날짜</span><span class="tk-val">5/3(일) 11:00 · 바실리카 내부</span></div>
+      <div class="ticket-row"><span class="tk-label">인원</span><span class="tk-val">5인</span></div>
+      <div class="ticket-row"><span class="tk-label">예약번호</span><span class="tk-val tk-code">95850996</span></div>
+      <div class="ticket-note">⚠️ 15분 전 도착 필수</div>
+    </div>
+    <a class="ticket-link" href="https://www.abadiamontserrat.cat" target="_blank">공식 사이트 →</a>
+  </div>
+
+  <!-- 기차 1: 바르셀로나→님 -->
+  <div class="ticket-card tc-train">
+    <div class="ticket-header">
+      <div class="ticket-icon-wrap">🚄</div>
+      <div class="ticket-meta">
+        <div class="ticket-category">기차 티켓</div>
+        <div class="ticket-title">바르셀로나 → 님 (TGV)</div>
+      </div>
+      <div class="ticket-status confirmed">확정</div>
+    </div>
+    <div class="ticket-body">
+      <div class="ticket-row"><span class="tk-label">날짜</span><span class="tk-val">5/4(월) 09:26 출발</span></div>
+      <div class="ticket-row"><span class="tk-label">도착</span><span class="tk-val">13:10 님 퐁뒤가르</span></div>
+      <div class="ticket-row"><span class="tk-label">열차</span><span class="tk-val">TGV INOUI 9708 · 15호차</span></div>
+      <div class="ticket-row"><span class="tk-label">좌석</span><span class="tk-val">564(준규) 565(혜현) 568(강준) 569(지현) 570(우재)</span></div>
+      <div class="ticket-row"><span class="tk-label">예약번호</span><span class="tk-val tk-code">R9YXP9</span></div>
+      <div class="ticket-note">⚠️ 여권 지참 · 출발 2분 전까지 탑승 · 수하물 라벨 필수</div>
+    </div>
+    <a class="ticket-link" href="https://www.sncf.com" target="_blank">SNCF 사이트 →</a>
+  </div>
+
+  <!-- 기차 2: 님→아비뇽 -->
+  <div class="ticket-card tc-train">
+    <div class="ticket-header">
+      <div class="ticket-icon-wrap">🚆</div>
+      <div class="ticket-meta">
+        <div class="ticket-category">기차 티켓</div>
+        <div class="ticket-title">님 → 아비뇽</div>
+      </div>
+      <div class="ticket-status confirmed">확정</div>
+    </div>
+    <div class="ticket-body">
+      <div class="ticket-row"><span class="tk-label">날짜</span><span class="tk-val">5/4(월) 13:58 출발</span></div>
+      <div class="ticket-row"><span class="tk-val">14:23 아비뇽 상트르 도착</span></div>
+      <div class="ticket-row"><span class="tk-label">열차</span><span class="tk-val">liO 876414</span></div>
+      <div class="ticket-row"><span class="tk-label">인원</span><span class="tk-val">5인 미니그룹 · €26 총액</span></div>
+      <div class="ticket-row"><span class="tk-label">예약번호</span><span class="tk-val tk-code">K72486</span></div>
+    </div>
+    <a class="ticket-link" href="https://zou.maregionsud.fr" target="_blank">ZOU! 사이트 →</a>
+  </div>
+
+</div>
+```
+
+  </div>
+</div>
+
 <!-- ── 맛집 지도 서브페이지 ── -->
+
 <div id="subpage-map" class="subpage">
   <div class="sub-header">
     <button class="back-btn" onclick="goHome()">← 홈</button>
@@ -1721,6 +1963,7 @@ body {
   </div>
 
   <!-- 지역 필터 -->
+
   <div class="map-filter-bar">
     <button class="map-filter-btn active" onclick="filterMap('all', this)">전체</button>
     <button class="map-filter-btn" onclick="filterMap('barcelona', this)">바르셀로나</button>
@@ -1732,12 +1975,15 @@ body {
   </div>
 
   <!-- 지도 -->
+
   <div id="gmap" style="width:100%;height:320px;flex-shrink:0;"></div>
 
   <!-- 리스트 -->
+
   <div class="rest-list" id="rest-list"></div>
 
   <!-- 식당 상세 팝업 -->
+
   <div class="rest-popup" id="rest-popup" style="display:none">
     <div class="rest-popup-inner">
       <button class="popup-close" onclick="closePopup()">✕</button>
@@ -2395,7 +2641,6 @@ document.addEventListener('DOMContentLoaded', () => {
 <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtDQYs-YNAMu_mrE0JZYikg-HfvEd_UR8">
 </script>
-
 
 </body>
 </html>
